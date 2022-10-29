@@ -1,30 +1,47 @@
-import * as S from "./styles";
+import { Link, useParams } from 'react-router-dom';
+
+import * as S from './styles';
 
 const CrossButton = () => {
+  const { id } = useParams();
+
+  const currentPage = Number(id);
+
+  const prevPage = currentPage ? currentPage - 1 : 0;
+  const nextPage = currentPage + 1;
+
   return (
     <S.Wrapper>
-      <S.ButtonContainer>
-        <S.Button />
-        <S.ButtonShaddow />
-      </S.ButtonContainer>
+      <Link to={`/pokemon/${prevPage}`}>
+        <S.ButtonContainer>
+          <S.Button />
+          <S.ButtonShaddow />
+        </S.ButtonContainer>
+      </Link>
       <S.HorizontalBtnsContainer>
+        <Link to={`/pokemon/${prevPage}`}>
+          <S.ButtonContainer>
+            <S.Button />
+            <S.ButtonShaddow />
+          </S.ButtonContainer>
+        </Link>
         <S.ButtonContainer>
           <S.Button />
           <S.ButtonShaddow />
         </S.ButtonContainer>
-        <S.ButtonContainer>
-          <S.Button />
-          <S.ButtonShaddow />
-        </S.ButtonContainer>
-        <S.ButtonContainer>
-          <S.Button />
-          <S.ButtonShaddow />
-        </S.ButtonContainer>
+        <Link to={`/pokemon/${nextPage}`}>
+          <S.ButtonContainer>
+            <S.Button />
+            <S.ButtonShaddow />
+          </S.ButtonContainer>
+        </Link>
       </S.HorizontalBtnsContainer>
-      <S.ButtonContainer>
-        <S.Button />
-        <S.ButtonShaddow />
-      </S.ButtonContainer>
+      <Link to={`/pokemon/${nextPage}`}>
+        <S.ButtonContainer>
+          <S.Button />
+          <S.ButtonShaddow />
+        </S.ButtonContainer>
+      </Link>
     </S.Wrapper>
   );
 };

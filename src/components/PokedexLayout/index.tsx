@@ -1,8 +1,9 @@
-import { useTheme } from "styled-components";
-import BottomPart from "./components/BottomPart";
-import * as S from "./styles";
-import PokedexRight from "./components/PokedexRight";
-import { Pokemon } from "~/models/Pokemon";
+import { Pokemon } from '~/models/Pokemon';
+import { useTheme } from 'styled-components';
+
+import BottomPart from './components/BottomPart';
+import PokedexRight from './components/PokedexRight';
+import * as S from './styles';
 
 interface IPokedexLayout {
   pokemon: Pokemon;
@@ -35,7 +36,7 @@ const PokedexLayout: React.FC<IPokedexLayout> = ({ pokemon }) => {
           </S.Screen>
           <S.ScreenShadow />
         </S.ScreenWrapper>
-        <BottomPart type={pokemon.types[0].type.name} />
+        <BottomPart types={pokemon.types} />
       </S.PokedexLeft>
       <PokedexRight pokemon={pokemon} />
     </S.Wrapper>

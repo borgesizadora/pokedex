@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import Loader from '~/components/Loader';
 import PokeList from '~/components/PokeList';
@@ -15,7 +16,7 @@ function Home() {
 
   const fillPokemonListData = async (list: AllPokemon) => {
     const arr = [] as Pokemon[];
-    for await (let pokemon of list.results) {
+    for await (const pokemon of list.results) {
       const resPokemon = await getPokemonByUrl(pokemon.url);
       arr.push(resPokemon);
     }
@@ -50,6 +51,7 @@ function Home() {
     <div>
       {!!allPokemonComplete?.length && <PokeList pokemonList={allPokemonComplete} />}
       {isLoading && <Loader />}
+      <Outlet />
     </div>
   );
 }

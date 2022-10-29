@@ -1,13 +1,14 @@
-import { useTheme } from "styled-components";
-import TypeCard from "~/components/TypeCard";
-import CrossButton from "../CrossButton";
-import * as S from "./styles";
-import { PokemonType } from "~/models/PokemonType";
+import TypeCard from '~/components/TypeCard';
+import { PokeType } from '~/models/Pokemon';
+import { useTheme } from 'styled-components';
+
+import CrossButton from '../CrossButton';
+import * as S from './styles';
 
 interface IBottomPart {
-  type: PokemonType;
+  types: PokeType[];
 }
-const BottomPart: React.FC<IBottomPart> = ({ type }) => {
+const BottomPart: React.FC<IBottomPart> = ({ types }) => {
   const { colors } = useTheme();
   return (
     <S.Wrapper>
@@ -21,7 +22,9 @@ const BottomPart: React.FC<IBottomPart> = ({ type }) => {
         <CrossButton />
       </S.TopBtnsWrapper>
       <S.TypeWrapper>
-        <TypeCard typeName={type} />
+        {types.map((type) => (
+          <TypeCard key={type.type.name} typeName={type.type.name} />
+        ))}
       </S.TypeWrapper>
     </S.Wrapper>
   );
