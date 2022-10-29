@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -28,6 +29,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "no-console": "warn",
     "react/prop-types": "off",
+    "no-use-before-define": "off",
     "import-helpers/order-imports": [
       "warn",
       {
