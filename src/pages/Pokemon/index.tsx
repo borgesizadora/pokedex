@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getPokemonById } from "~/services/Pokemon/pokemonRequests";
-import { Pokemon as PokeType } from "~/models/Pokemon";
-import * as S from "./styles";
-import PokedexLayout from "~/components/PokedexLayout";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import Loader from '~/components/Loader';
+import PokedexLayout from '~/components/PokedexLayout';
+import { Pokemon as PokeType } from '~/models/Pokemon';
+import { getPokemonById } from '~/services/Pokemon/pokemonRequests';
 
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,15 +22,7 @@ const Pokemon = () => {
   }, []);
 
   return (
-    <div>
-      {isLoading ? (
-        <>loading...</>
-      ) : pokemon ? (
-        <PokedexLayout pokemon={pokemon} />
-      ) : (
-        <div />
-      )}
-    </div>
+    <div>{isLoading ? <Loader /> : pokemon ? <PokedexLayout pokemon={pokemon} /> : <div />}</div>
   );
 };
 

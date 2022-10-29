@@ -1,11 +1,12 @@
-import { ThemeProvider } from "styled-components";
-import theme from "./shared/styles/theme";
-import GlobalStyle from "./shared/styles/global";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from "./pages/Home";
-import Pokemon from "./pages/Pokemon";
-import PageLayout from "./components/PageLayout";
+import { ThemeProvider } from 'styled-components';
+
+import PageLayout from './components/PageLayout';
+import Home from './pages/Home';
+import Pokemon from './pages/Pokemon';
+import GlobalStyle from './shared/styles/global';
+import theme from './shared/styles/theme';
 
 function App() {
   return (
