@@ -21,7 +21,9 @@ const Card: React.FC<ICard> = ({ pokemon }) => {
 
         <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
         <S.TypeCardWrapper>
-          <TypeCard typeName={pokemon.types[0].type.name} />
+          {pokemon.types.map((type) => (
+            <TypeCard key={type.type.name} typeName={type.type.name} />
+          ))}
         </S.TypeCardWrapper>
       </S.Wrapper>
     </Link>

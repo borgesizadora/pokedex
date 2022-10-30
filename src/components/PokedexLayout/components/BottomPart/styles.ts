@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ export const RoundButton = styled.div`
     height: 32px;
     border-radius: 50%;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       top: 1px;
       left: 4px;
@@ -62,5 +62,6 @@ export const TypeWrapper = styled.div`
     text-transform: capitalize;
     border-top: 1px solid ${colors.mediumGray};
     border-right: 1px solid ${colors.mediumGray};
+    padding: 12px;
   `}
 `;

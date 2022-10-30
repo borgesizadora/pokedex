@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors, boxShadow } }) => css`
@@ -66,7 +66,8 @@ export const Number = styled.div`
 
 export const TypeCardWrapper = styled.div`
   width: 100%;
-  margin: 12px;
+  padding: 12px;
   display: flex;
   justify-content: center;
+  gap: 12px;
 `;

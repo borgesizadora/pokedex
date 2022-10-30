@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { PokemonType } from "~/models/PokemonType";
+import { PokemonType } from '~/models/PokemonType';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div<{ typeName: PokemonType }>`
   ${({ theme: { typesColors, boxShadow }, typeName }) => css`
@@ -8,7 +8,7 @@ export const Wrapper = styled.div<{ typeName: PokemonType }>`
     padding: 3px;
     border-radius: 5px;
     font-weight: bold;
-    width: 60%;
+    width: 100%;
     text-shadow: ${boxShadow.dark};
   `}
 `;
