@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Loader from '~/components/Loader';
 import PokeList from '~/components/PokeList';
-import useFetchPokemons from '~/shared/styles/hooks/useFetchPokemons';
+import useFetchPokemons from '~/shared/hooks/useFetchPokemons';
 
 const LIMIT = 20;
 
