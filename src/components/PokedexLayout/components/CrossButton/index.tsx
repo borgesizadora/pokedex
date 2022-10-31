@@ -7,7 +7,7 @@ const CrossButton = () => {
 
   const currentPage = Number(id);
 
-  const prevPage = currentPage ? currentPage - 1 : 0;
+  const prevPage = currentPage > 1 ? currentPage - 1 : 1;
   const nextPage = currentPage + 1;
 
   return (

@@ -1,5 +1,5 @@
-import { css } from "styled-components";
-import styled from "styled-components";
+import { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -18,7 +18,7 @@ export const PokedexLeft = styled.div`
     position: relative;
     overflow: hidden;
     &::before {
-      content: "";
+      content: '';
       border: 1px solid ${colors.pokedexDarkest};
       height: 520px;
       width: 45px;
@@ -35,7 +35,7 @@ export const PokedexLeft = styled.div`
       );
     }
     &::after {
-      content: "";
+      content: '';
       background-color: ${colors.pokedexDarkest};
       position: absolute;
       bottom: -10px;
@@ -92,7 +92,7 @@ export const BlueBall = styled.span`
     margin: 10px;
     transform: scale(0.9);
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 9px;
       left: 8px;
@@ -104,7 +104,7 @@ export const BlueBall = styled.span`
       border-width: 0px 3px 8px 7px;
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 20px;
       height: 20px;
@@ -135,7 +135,7 @@ export const SmallBall = styled.span<{ color: string }>`
     border-width: 0 0 2px 1px;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 8px;
       height: 8px;
@@ -188,7 +188,7 @@ export const ScreenWrapper = styled.div`
 
 export const Screen = styled.div`
   ${({ theme: { colors } }) => css`
-    background: ${colors.lightGray};
+    background: ${colors.lightestGray};
     padding: 30px;
     width: 250px;
     height: 200px;

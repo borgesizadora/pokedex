@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -7,11 +7,10 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  #root {
-    max-width: ${(props) => props.theme.breakpoints.xl};
-    margin: 0 auto;
+  ul {
+    list-style-type: none;
   }
-  
+
   body {
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;

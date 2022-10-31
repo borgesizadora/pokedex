@@ -33,7 +33,7 @@ function useFetchPokemons(offset: number) {
 
   useEffect(() => {
     getPokemonList();
-  }, [offset]);
+  }, [getPokemonList, offset]);
 
   return { loading, error, allPokemonComplete };
 }

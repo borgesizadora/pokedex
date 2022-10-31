@@ -13,8 +13,8 @@ export const Loader = styled.div`
       height: 64px;
       margin: 8px;
       border-radius: 50%;
-      border: 6px solid ${colors.lightGray};
-      border-color: ${colors.lightGray} transparent ${colors.lightGray} transparent;
+      border: 6px solid ${colors.lightestGray};
+      border-color: ${colors.lightestGray} transparent ${colors.lightestGray} transparent;
       animation: lds-dual-ring 1.2s linear infinite;
     }
     @keyframes lds-dual-ring {
