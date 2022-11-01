@@ -12,7 +12,7 @@ interface ICard {
 const Card: React.FC<ICard> = ({ pokemon }) => {
   const { typesColors } = useTheme();
   return (
-    <Link to={`/pokemon/${pokemon.id}`}>
+    <Link to={`/pokedex/${pokemon.id}`}>
       <S.Wrapper>
         <S.Header secondary={typesColors[pokemon.types[0].type.name]?.secondaryColor}>
           <S.Number>#{pokemon.id}</S.Number>

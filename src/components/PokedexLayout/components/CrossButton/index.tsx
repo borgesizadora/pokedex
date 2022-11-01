@@ -12,14 +12,14 @@ const CrossButton = () => {
 
   return (
     <S.Wrapper>
-      <Link to={`/pokemon/${prevPage}`}>
+      <Link to={`/pokedex/${prevPage}`}>
         <S.ButtonContainer>
           <S.Button />
           <S.ButtonShaddow />
         </S.ButtonContainer>
       </Link>
       <S.HorizontalBtnsContainer>
-        <Link to={`/pokemon/${prevPage}`}>
+        <Link to={`/pokedex/${prevPage}`}>
           <S.ButtonContainer>
             <S.Button />
             <S.ButtonShaddow />
@@ -29,14 +29,14 @@ const CrossButton = () => {
           <S.Button />
           <S.ButtonShaddow />
         </S.ButtonContainer>
-        <Link to={`/pokemon/${nextPage}`}>
+        <Link to={`/pokedex/${nextPage}`}>
           <S.ButtonContainer>
             <S.Button />
             <S.ButtonShaddow />
           </S.ButtonContainer>
         </Link>
       </S.HorizontalBtnsContainer>
-      <Link to={`/pokemon/${nextPage}`}>
+      <Link to={`/pokedex/${nextPage}`}>
         <S.ButtonContainer>
           <S.Button />
           <S.ButtonShaddow />

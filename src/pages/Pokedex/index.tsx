@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-const Pokemon = () => {
+const Pokedex = () => {
   return (
     <div>
       <Outlet />
@@ -8,4 +8,4 @@ const Pokemon = () => {
   );
 };
 
-export default Pokemon;
+export default Pokedex;

@@ -20,7 +20,7 @@ const Header = () => {
               <Link to={'/'}>HOME</Link>
             </li>
             <li>
-              <Link to={'/'}>POKEDEX</Link>
+              <Link to={'/pokedex/1'}>POKEDEX</Link>
             </li>
             <li>
               <Link to={'/'}>POKEMON DATA</Link>

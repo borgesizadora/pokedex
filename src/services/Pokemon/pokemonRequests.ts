@@ -2,7 +2,7 @@ import { AllPokemon, Pokemon } from '~/models/Pokemon';
 
 import api from '../api';
 
-export const getAllPokemon = async (offset: number = 0, limit: number = 20) => {
+export const getAllPokemon = async (offset = 0, limit = 20) => {
   const response = await api.get(`/v2/pokemon/?offset=${offset}&limit=${limit}}`);
   return response.data as AllPokemon;
 };
