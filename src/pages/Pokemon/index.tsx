@@ -1,38 +1,59 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import Card from '~/components/Card';
 import Loader from '~/components/Loader';
-import { PokemonEvolutionData } from '~/models/Pokemon';
-import { getPokemonEvolutions } from '~/services/Pokemon/pokemonRequests';
+import { PokemonEvolution, PokemonSpecies } from '~/models/Pokemon';
+import {
+  getPokemonEvolutionChainByUrl,
+  getPokemonSpecies
+} from '~/services/Pokemon/pokemonRequests';
 
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [pokemonEvolution, setPokemonEvolution] = useState<PokemonEvolutionData>();
+  const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>();
+  const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<string[]>();
   const params = useParams();
 
-  const fetchPokemon = async () => {
+  const fetchPokemonSpecies = async () => {
     setIsLoading(true);
-    const res = await getPokemonEvolutions(Number(params.id));
-    setPokemonEvolution(res);
+    const res = await getPokemonSpecies(Number(params.id));
+    setPokemonSpecies(res);
+    const resEvolutionChain = await getPokemonEvolutionChainByUrl(res.evolution_chain.url);
+    formatChain(resEvolutionChain.chain);
+
     setIsLoading(false);
   };
+
+  const evolutionChainArr = [] as string[];
+  const formatChain = (evolutionChain: PokemonEvolution) => {
+    if (!evolutionChain.evolves_to.length) {
+      evolutionChainArr.push(evolutionChain.species.name);
+      setPokemonEvolutionChain(evolutionChainArr);
+      return;
+    }
+    evolutionChainArr.push(evolutionChain.species.name);
+    formatChain(evolutionChain.evolves_to[0]);
+  };
+
   useEffect(() => {
-    fetchPokemon();
+    fetchPokemonSpecies();
   }, [params.id]);
+
   return (
     <div>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <div>{pokemonEvolution?.chain.species.name}</div>
+          <h1>{pokemonSpecies?.name.toUpperCase()}</h1>
+          <br />
 
           <h2>EVOLUTION:</h2>
-          <div>
-            {pokemonEvolution?.chain.evolves_to.map((pokemon) => (
-              <div key={pokemon.species.name}>{pokemon.species.name}</div>
-            ))}
-          </div>
+
+          {pokemonEvolutionChain?.length
+            ? pokemonEvolutionChain.map((pokemon) => <Card key={pokemon} pokemon={pokemon} />)
+            : null}
         </>
       )}
     </div>

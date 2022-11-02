@@ -37,7 +37,7 @@ export interface Pokemon {
   types: PokeType[];
 }
 
-interface Result {
+export interface Result {
   name: string;
   url: string;
 }
@@ -50,12 +50,19 @@ export interface AllPokemon {
 
 export interface PokemonEvolution {
   species: Result;
+  evolves_to: PokemonEvolution[];
 }
 
 export interface PokemonEvolutionData {
   id: number;
-  chain: {
-    evolves_to: PokemonEvolution[];
-    species: Result;
+  chain: PokemonEvolution;
+}
+
+export interface PokemonSpecies {
+  id: number;
+  name: string;
+  evolves_from_species: Result;
+  evolution_chain: {
+    url: string;
   };
 }
