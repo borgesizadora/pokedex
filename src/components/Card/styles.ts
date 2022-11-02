@@ -1,28 +1,39 @@
 import styled, { css } from 'styled-components';
 
+export const Container = styled.div`
+  ${({ theme: { colors } }) => css`
+    border: 3px solid ${colors.lightestGray};
+    background-color: ${colors.black};
+    border-radius: 12px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    &:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+  `}
+`;
+
 export const Wrapper = styled.div`
-  ${({ theme: { colors, boxShadow } }) => css`
+  ${({ theme: { boxShadow } }) => css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  border: 3px solid ${colors.lightestGray};
-  background-color: ${colors.black};
+  justify-content: space-between;  
   width: 250px;
-  height:100%;
-  border-radius: 12px;
+  height:250px;
   text-transform: capitalize;
   box-shadow: ${boxShadow.dark};
   position: relative;
-  cursor: pointer;
-  overflow: hidden;
   gap: 18px;
-  transition: transform .2s;
   
-  &:hover {
-    transform: scale(1.1);
-    z-index: 2;
-  }
   & img {
     max-width: 100px;
     max-height: 100px;

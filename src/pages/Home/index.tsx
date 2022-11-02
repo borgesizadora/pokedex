@@ -9,7 +9,7 @@ const LIMIT = 20;
 function Home() {
   const [offset, setOffset] = useState(0);
 
-  const { allPokemonComplete, loading } = useFetchPokemons(offset);
+  const { allPokemonList, loading } = useFetchPokemons(offset);
 
   const row = useRef(null);
 
@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <div>
-      {!!allPokemonComplete?.length && <PokeList pokemonList={allPokemonComplete} />}
+      {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
       <div ref={row} />
       {loading && <Loader />}
     </div>
