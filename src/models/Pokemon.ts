@@ -47,3 +47,15 @@ export interface AllPokemon {
   previous: string;
   results: Result[];
 }
+
+export interface PokemonEvolution {
+  species: Result;
+}
+
+export interface PokemonEvolutionData {
+  id: number;
+  chain: {
+    evolves_to: PokemonEvolution[];
+    species: Result;
+  };
+}
