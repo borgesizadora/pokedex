@@ -23,18 +23,22 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp }) => {
     };
     fetchPokemon();
   }, [pokemonProp]);
+
   const { typesColors } = useTheme();
   return (
     <S.Container>
       {pokemon ? (
-        <Link to={`/pokedex/${pokemon.id}`}>
+        <Link to={`/pokemon/${pokemon.id}`}>
           <S.Wrapper>
             <S.Header secondary={typesColors[pokemon.types[0].type.name]?.secondaryColor}>
               <S.Number>#{pokemon.id}</S.Number>
               <h3>{pokemon.name}</h3>
             </S.Header>
 
-            <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} />
+            <img
+              src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.front_default}
+              alt={pokemon.name}
+            />
             <S.TypeCardWrapper>
               {pokemon.types.map((type) => (
                 <TypeCard key={type.type.name} typeName={type.type.name} />

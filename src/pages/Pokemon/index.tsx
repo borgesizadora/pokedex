@@ -12,7 +12,7 @@ import {
 const Pokemon = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>();
-  const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<string[]>();
+  const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<string[][]>();
   const params = useParams();
 
   const fetchPokemonSpecies = async () => {
@@ -25,16 +25,26 @@ const Pokemon = () => {
     setIsLoading(false);
   };
 
-  const evolutionChainArr = [] as string[];
+  const evolutionChainArr = [] as string[][];
   const formatChain = (evolutionChain: PokemonEvolution) => {
+    evolutionChainArr.push([evolutionChain.species.name]);
     if (!evolutionChain.evolves_to.length) {
-      evolutionChainArr.push(evolutionChain.species.name);
       setPokemonEvolutionChain(evolutionChainArr);
       return;
     }
-    evolutionChainArr.push(evolutionChain.species.name);
-    formatChain(evolutionChain.evolves_to[0]);
+
+    evolutionChain.evolves_to.forEach((pokemon) => {
+      if (!pokemon.evolves_to.length) {
+        evolutionChainArr.push([pokemon.species.name]);
+        setPokemonEvolutionChain(evolutionChainArr);
+        return;
+      }
+      formatChain(pokemon);
+    });
   };
+  useEffect(() => {
+    console.log(pokemonEvolutionChain);
+  }, [pokemonEvolutionChain]);
 
   useEffect(() => {
     fetchPokemonSpecies();
@@ -52,7 +62,14 @@ const Pokemon = () => {
           <h2>EVOLUTION:</h2>
 
           {pokemonEvolutionChain?.length
-            ? pokemonEvolutionChain.map((pokemon) => <Card key={pokemon} pokemon={pokemon} />)
+            ? pokemonEvolutionChain.map((pokemonTree, index) => (
+                <div key={`${pokemonTree[0]}-${index}`}>
+                  {pokemonTree.map((pokemon) => (
+                    <Card key={pokemon} pokemon={pokemon} />
+                  ))}
+                  {pokemonEvolutionChain[index + 1] && <>next</>}
+                </div>
+              ))
             : null}
         </>
       )}

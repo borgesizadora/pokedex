@@ -15,6 +15,7 @@ export const Container = styled.div`
     cursor: pointer;
     transition: transform 0.2s;
     &:hover {
+      position: relative;
       transform: scale(1.1);
       z-index: 2;
     }
