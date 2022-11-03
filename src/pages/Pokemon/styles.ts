@@ -1,5 +1,20 @@
 import styled, { css } from 'styled-components';
 
+export const Container = styled.div`
+  ${({ theme: { colors, spacing } }) => css`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
+    background-color: ${colors.lightestGray};
+    margin: 38px;
+    border-radius: 8px;
+    overflow: hidden;
+    color: ${colors.darkGray};
+  `}
+`;
+
 export const Wrapper = styled.div`
   ${({ theme: { colors, spacing } }) => css`
     width: 100%;
@@ -9,7 +24,6 @@ export const Wrapper = styled.div`
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
     background-color: ${colors.lightestGray};
-    margin: 38px;
     border-radius: 8px;
     overflow: hidden;
   `}
@@ -54,4 +68,28 @@ export const HeaderButton = styled.div`
       flex: 1;
     }
   `}
+`;
+
+export const MainImage = styled.div`
+  ${({ theme: { boxShadow } }) => css`
+    width: 400px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 32px;
+    & img {
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: ${boxShadow.dark};
+      width: 100%;
+      height: 100%;
+    }
+  `}
+`;
+
+export const Description = styled.p`
+  width: 300px;
+  text-align: justify;
 `;

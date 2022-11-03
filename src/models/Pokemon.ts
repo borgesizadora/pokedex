@@ -58,6 +58,10 @@ export interface PokemonEvolutionData {
   chain: PokemonEvolution;
 }
 
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: { name: string; url: string };
+}
 export interface PokemonSpecies {
   id: number;
   name: string;
@@ -65,4 +69,5 @@ export interface PokemonSpecies {
   evolution_chain: {
     url: string;
   };
+  flavor_text_entries: FlavorTextEntry[];
 }

@@ -22,7 +22,7 @@ export const getPokemonEvolutionChainByUrl = async (url: string) => {
   return response.data as PokemonEvolutionData;
 };
 
-export const getPokemonSpecies = async (id: number) => {
-  const response = await api.get(`/v2/pokemon-species/${id}`);
+export const getPokemonSpecies = async (idOrName: number | string) => {
+  const response = await api.get(`/v2/pokemon-species/${idOrName}`);
   return response.data as PokemonSpecies;
 };
