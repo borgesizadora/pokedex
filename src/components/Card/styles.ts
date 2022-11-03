@@ -42,7 +42,7 @@ background-color: ${light ? colors.white : ''};
     `}
 `;
 export const Header = styled.div<{ secondary: string }>`
-  ${({ theme: { boxShadow }, secondary }) => css`
+  ${({ theme: { boxShadow, colors }, secondary }) => css`
     display: flex;
     height: 50px;
     width: 100%;
@@ -51,6 +51,7 @@ export const Header = styled.div<{ secondary: string }>`
     gap: 12px;
     background-color: ${secondary};
     margin-bottom: 8px;
+    color: ${colors.white};
     & > h3 {
       text-shadow: ${boxShadow.dark};
     }

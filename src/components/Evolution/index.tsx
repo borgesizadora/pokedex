@@ -57,7 +57,7 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
   }, [url]);
 
   return (
-    <div>
+    <S.Wrapper>
       {isLoading ? (
         <Loader />
       ) : (
@@ -74,19 +74,22 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
                   </S.EvolutionCard>
                 ))
               : null}
-            <div>
-              {pokemonThatDontEvolveList?.length
-                ? pokemonThatDontEvolveList.map((pokemon) => (
-                    <div key={pokemon.name}>
-                      <Card key={pokemon.name} pokemon={pokemon.name} light />
-                    </div>
-                  ))
-                : null}
-            </div>
+
+            {pokemonThatDontEvolveList?.length ? (
+              <S.LastEvolutionGroup
+                showShadow={pokemonThatDontEvolveList.length > 1}
+                hasManyEvolutions={pokemonThatDontEvolveList.length > 3}>
+                {pokemonThatDontEvolveList.map((pokemon) => (
+                  <div key={pokemon.name}>
+                    <Card key={pokemon.name} pokemon={pokemon.name} light />
+                  </div>
+                ))}
+              </S.LastEvolutionGroup>
+            ) : null}
           </S.EvolutionWrapper>
         </>
       )}
-    </div>
+    </S.Wrapper>
   );
 };
 
