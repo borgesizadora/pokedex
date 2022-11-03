@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
-  ${({ theme: { colors } }) => css`
-    border: 3px solid ${colors.lightestGray};
+export const Container = styled.div<{ light: boolean }>`
+  ${({ light, theme: { boxShadow, colors } }) => css`
+    border: ${light ? '' : `3px solid ${colors.lightestGray}`};
     background-color: ${colors.black};
     border-radius: 12px;
     width: 250px;
@@ -14,6 +14,7 @@ export const Container = styled.div`
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.2s;
+    box-shadow: ${boxShadow.dark};
     &:hover {
       position: relative;
       transform: scale(1.1);
@@ -22,8 +23,8 @@ export const Container = styled.div`
   `}
 `;
 
-export const Wrapper = styled.div`
-  ${({ theme: { boxShadow } }) => css`
+export const Wrapper = styled.div<{ light: boolean }>`
+  ${({ light, theme: { colors } }) => css`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,9 +32,9 @@ export const Wrapper = styled.div`
   width: 250px;
   height:250px;
   text-transform: capitalize;
-  box-shadow: ${boxShadow.dark};
   position: relative;
   gap: 18px;
+background-color: ${light ? colors.white : ''};
   
   & img {
     max-width: 100px;

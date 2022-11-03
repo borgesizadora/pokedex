@@ -11,9 +11,10 @@ import * as S from './styles';
 
 interface ICard {
   pokemon: string;
+  light?: boolean;
 }
 
-const Card: React.FC<ICard> = ({ pokemon: pokemonProp }) => {
+const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
   const [pokemon, setPokemon] = useState<Pokemon>();
 
   useEffect(() => {
@@ -26,10 +27,10 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp }) => {
 
   const { typesColors } = useTheme();
   return (
-    <S.Container>
+    <S.Container light={light}>
       {pokemon ? (
         <Link to={`/pokemon/${pokemon.id}`}>
-          <S.Wrapper>
+          <S.Wrapper light={light}>
             <S.Header secondary={typesColors[pokemon.types[0].type.name]?.secondaryColor}>
               <S.Number>#{pokemon.id}</S.Number>
               <h3>{pokemon.name}</h3>
