@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-export const Loader = styled.div`
-  ${({ theme: { colors } }) => css`
+export const Loader = styled.div<{ color?: string }>`
+  ${({ color, theme: { colors } }) => css`
     display: inline-block;
     width: 80px;
     height: 80px;
@@ -13,8 +13,9 @@ export const Loader = styled.div`
       height: 64px;
       margin: 8px;
       border-radius: 50%;
-      border: 6px solid ${colors.lightestGray};
-      border-color: ${colors.lightestGray} transparent ${colors.lightestGray} transparent;
+      border: 6px solid ${color || colors.lightestGray};
+      border-color: ${color || colors.lightestGray} transparent ${color || colors.lightestGray}
+        transparent;
       animation: lds-dual-ring 1.2s linear infinite;
     }
     @keyframes lds-dual-ring {
