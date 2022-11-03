@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import Card from '~/components/Card';
 import Loader from '~/components/Loader';
-import { PokemonEvolution, PokemonSpecies } from '~/models/Pokemon';
-import {
-  getPokemonEvolutionChainByUrl,
-  getPokemonSpecies
-} from '~/services/Pokemon/pokemonRequests';
+import { PokemonEvolution } from '~/models/Pokemon';
+import { getPokemonEvolutionChainByUrl } from '~/services/Pokemon/pokemonRequests';
+import { useTheme } from 'styled-components';
+
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as S from './styles';
 interface PokemonFromTree {
@@ -15,20 +15,16 @@ interface PokemonFromTree {
   canEvolve: boolean;
 }
 
-const Evolution: React.FC<{ id: number }> = ({ id }) => {
+const Evolution: React.FC<{ url: string }> = ({ url }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>();
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<PokemonFromTree[]>();
-  const params = useParams();
 
   const pokemonThatEvolveList = pokemonEvolutionChain?.filter((pokemon) => pokemon.canEvolve);
   const pokemonThatDontEvolveList = pokemonEvolutionChain?.filter((pokemon) => !pokemon.canEvolve);
 
   const fetchPokemonSpecies = async () => {
     setIsLoading(true);
-    const res = await getPokemonSpecies(id);
-    setPokemonSpecies(res);
-    const resEvolutionChain = await getPokemonEvolutionChainByUrl(res.evolution_chain.url);
+    const resEvolutionChain = await getPokemonEvolutionChainByUrl(url);
     formatChain(resEvolutionChain.chain);
 
     setIsLoading(false);
@@ -55,10 +51,10 @@ const Evolution: React.FC<{ id: number }> = ({ id }) => {
       formatChain(pokemon);
     });
   };
-
+  const { colors } = useTheme();
   useEffect(() => {
     fetchPokemonSpecies();
-  }, [id]);
+  }, [url]);
 
   return (
     <div>
@@ -66,16 +62,15 @@ const Evolution: React.FC<{ id: number }> = ({ id }) => {
         <Loader />
       ) : (
         <>
-          <h1>{pokemonSpecies?.name.toUpperCase()}</h1>
-          <br />
-
-          <h2>EVOLUTION:</h2>
+          <h2>EVOLUTION CHAIN:</h2>
           <S.EvolutionWrapper>
             {pokemonThatEvolveList?.length
               ? pokemonThatEvolveList.map((pokemon) => (
                   <S.EvolutionCard key={pokemon.name}>
-                    <Card key={pokemon.name} pokemon={pokemon.name} />
-                    {pokemon.canEvolve && <>next</>}
+                    <Card key={pokemon.name} pokemon={pokemon.name} light />
+                    {pokemon.canEvolve && (
+                      <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
+                    )}
                   </S.EvolutionCard>
                 ))
               : null}
@@ -83,7 +78,7 @@ const Evolution: React.FC<{ id: number }> = ({ id }) => {
               {pokemonThatDontEvolveList?.length
                 ? pokemonThatDontEvolveList.map((pokemon) => (
                     <div key={pokemon.name}>
-                      <Card key={pokemon.name} pokemon={pokemon.name} />
+                      <Card key={pokemon.name} pokemon={pokemon.name} light />
                     </div>
                   ))
                 : null}
