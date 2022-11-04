@@ -10,6 +10,7 @@ export default {
     mediumBlue: '#0e96c6',
     green: '#55ab62',
     yellow: '#feee6d',
+    mediumYellow: '#c7a400',
     darkYellow: '#9f8a0d',
     red: '#e5092e',
     pokedexGreen: '#bad8a8',

@@ -62,7 +62,7 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
         return;
       }
       evolutionChainArr.push({
-        id: clearURL(evolutionChain.species.url),
+        id: clearURL(pokemon.species.url),
         name: pokemon.species.name,
         canEvolve: true
       });

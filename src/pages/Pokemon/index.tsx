@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Evolution from '~/components/Evolution';
 import Loader from '~/components/Loader';
+import StatsChart from '~/components/StatsChart';
 import { Pokemon as IPokemon, PokemonSpecies } from '~/models/Pokemon';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 import { useTheme } from 'styled-components';
@@ -20,7 +21,7 @@ const Pokemon = () => {
   const params = useParams();
   const { colors } = useTheme();
 
-  const fetchPokemon = async () => {
+  const fetchPokemon = useCallback(async () => {
     if (params?.id) {
       setIsLoading(true);
       const resSpecies = await getPokemonSpecies(params.id);
@@ -29,10 +30,11 @@ const Pokemon = () => {
       setPokemon(resPokemon);
       setIsLoading(false);
     }
-  };
+  }, [params.id]);
+
   useEffect(() => {
     fetchPokemon();
-  }, [params.id]);
+  }, [params.id, fetchPokemon]);
 
   return (
     <S.Container>
@@ -64,10 +66,14 @@ const Pokemon = () => {
           </S.Description>
           <S.MainImage>
             <img
-              src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.front_default}
+              src={
+                pokemon.sprites.other['official-artwork'].front_default ||
+                pokemon.sprites.front_default
+              }
               alt={pokemon.name}
             />
           </S.MainImage>
+          <StatsChart stats={pokemon.stats} />
           {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
         </S.Wrapper>
       ) : null}

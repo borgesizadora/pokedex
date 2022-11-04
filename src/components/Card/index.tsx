@@ -37,7 +37,11 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
             </S.Header>
 
             <img
-              src={pokemon.sprites.other.dream_world.front_default || pokemon.sprites.front_default}
+              src={
+                pokemon.sprites.other.dream_world.front_default ||
+                pokemon.sprites.other['official-artwork'].front_default ||
+                pokemon.sprites.front_default
+              }
               alt={pokemon.name}
             />
             <S.TypeCardWrapper>

@@ -21,7 +21,6 @@ export const LastEvolutionGroup = styled.div<{ showShadow?: boolean; hasManyEvol
     padding: 24px ${showShadow ? '24px' : 0};
     display: flex;
     flex-direction: ${hasManyEvolutions ? 'row' : 'column'};
-    max-height: 1000px;
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;

@@ -31,6 +31,7 @@ export interface Pokemon {
       home: {
         front_default: string;
       };
+      'official-artwork': { front_default: string };
     };
   };
   stats: PokeStat[];
