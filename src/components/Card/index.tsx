@@ -25,7 +25,7 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
     fetchPokemon();
   }, [pokemonProp]);
 
-  const { typesColors } = useTheme();
+  const { typesColors, colors } = useTheme();
   return (
     <S.Container light={light}>
       {pokemon ? (
@@ -33,7 +33,7 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
           <S.Wrapper light={light}>
             <S.Header secondary={typesColors[pokemon.types[0].type.name]?.secondaryColor}>
               <S.Number>#{pokemon.id}</S.Number>
-              <h3>{pokemon.name}</h3>
+              <h3>{pokemon.species.name}</h3>
             </S.Header>
 
             <img
@@ -48,7 +48,7 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
           </S.Wrapper>
         </Link>
       ) : (
-        <Loader />
+        <Loader color={light ? colors.black : ''} />
       )}
     </S.Container>
   );

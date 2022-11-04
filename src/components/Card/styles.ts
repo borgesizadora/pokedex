@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div<{ light: boolean }>`
   ${({ light, theme: { boxShadow, colors } }) => css`
     border: ${light ? '' : `3px solid ${colors.lightestGray}`};
-    background-color: ${colors.black};
+    background-color: ${light ? colors.white : colors.black};
     border-radius: 12px;
     width: 250px;
     height: 250px;
