@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Card from '~/components/Card';
 import Loader from '~/components/Loader';
@@ -23,57 +23,65 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
   const pokemonThatEvolveList = pokemonEvolutionChain?.filter((pokemon) => pokemon.canEvolve);
   const pokemonThatDontEvolveList = pokemonEvolutionChain?.filter((pokemon) => !pokemon.canEvolve);
 
-  const fetchPokemonSpecies = async () => {
-    setIsLoading(true);
-    const resEvolutionChain = await getPokemonEvolutionChainByUrl(url);
-    formatChain(resEvolutionChain.chain);
-
-    setIsLoading(false);
+  const clearURL = (url: string, name: string) => {
+    if (url.includes('https://pokeapi.co/api/v2/pokemon-species/'))
+      return url.replace('https://pokeapi.co/api/v2/pokemon-species/', '').replace('/', '');
+    return name;
   };
-  const clearURL = (url: string) =>
-    url.replace('https://pokeapi.co/api/v2/pokemon-species/', '').replace('/', '');
 
-  const evolutionChainArr = [] as PokemonFromTree[];
-  const formatChain = (evolutionChain: PokemonEvolution) => {
-    if (!evolutionChain.evolves_to.length) {
-      evolutionChainArr.push({
-        id: clearURL(evolutionChain.species.url),
-        name: evolutionChain.species.name,
-        canEvolve: false
-      });
-      setPokemonEvolutionChain(evolutionChainArr);
-      return;
-    }
-    if (!evolutionChainArr.length)
-      evolutionChainArr.push({
-        id: clearURL(evolutionChain.species.url),
-        name: evolutionChain.species.name,
-        canEvolve: true
-      });
+  const evolutionChainArr = useMemo(() => [] as PokemonFromTree[], []);
 
-    evolutionChain.evolves_to.forEach((pokemon) => {
-      if (!pokemon.evolves_to.length) {
+  const formatChain = useCallback(
+    (evolutionChain: PokemonEvolution) => {
+      if (!evolutionChain.evolves_to.length) {
         evolutionChainArr.push({
-          id: clearURL(pokemon.species.url),
-          name: pokemon.species.name,
+          id: clearURL(evolutionChain.species.url, evolutionChain.species.name),
+          name: evolutionChain.species.name,
           canEvolve: false
         });
         setPokemonEvolutionChain(evolutionChainArr);
         return;
       }
-      evolutionChainArr.push({
-        id: clearURL(pokemon.species.url),
-        name: pokemon.species.name,
-        canEvolve: true
+      if (!evolutionChainArr.length)
+        evolutionChainArr.push({
+          id: clearURL(evolutionChain.species.url, evolutionChain.species.name),
+          name: evolutionChain.species.name,
+          canEvolve: true
+        });
+
+      evolutionChain.evolves_to.forEach((pokemon) => {
+        if (!pokemon.evolves_to.length) {
+          evolutionChainArr.push({
+            id: clearURL(pokemon.species.url, pokemon.species.name),
+            name: pokemon.species.name,
+            canEvolve: false
+          });
+          setPokemonEvolutionChain(evolutionChainArr);
+          return;
+        }
+        evolutionChainArr.push({
+          id: clearURL(pokemon.species.url, pokemon.species.name),
+          name: pokemon.species.name,
+          canEvolve: true
+        });
+        setPokemonEvolutionChain(evolutionChainArr);
+        formatChain(pokemon);
       });
-      setPokemonEvolutionChain(evolutionChainArr);
-      formatChain(pokemon);
-    });
-  };
+    },
+    [evolutionChainArr]
+  );
+  const fetchPokemonSpecies = useCallback(async () => {
+    setIsLoading(true);
+    const resEvolutionChain = await getPokemonEvolutionChainByUrl(url);
+    formatChain(resEvolutionChain.chain);
+
+    setIsLoading(false);
+  }, [url, formatChain]);
   const { colors } = useTheme();
+
   useEffect(() => {
     fetchPokemonSpecies();
-  }, [url]);
+  }, [url, fetchPokemonSpecies]);
 
   return (
     <S.Wrapper>

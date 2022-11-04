@@ -8,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
     background-color: ${colors.lightestGray};
-    margin: 38px;
+    margin: 38px 10px;
     border-radius: 8px;
     overflow: hidden;
     color: ${colors.darkGray};

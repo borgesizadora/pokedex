@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
     color: ${colors.black};
+    padding: 32px;
   `}
 `;
 
 export const EvolutionWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 32px;
 `;
 export const EvolutionCard = styled.div`
   display: flex;
