@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as S from './styles';
 interface PokemonFromTree {
+  id: string;
   name: string;
   canEvolve: boolean;
 }
@@ -29,24 +30,42 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
 
     setIsLoading(false);
   };
+  const clearURL = (url: string) =>
+    url.replace('https://pokeapi.co/api/v2/pokemon-species/', '').replace('/', '');
 
   const evolutionChainArr = [] as PokemonFromTree[];
   const formatChain = (evolutionChain: PokemonEvolution) => {
     if (!evolutionChain.evolves_to.length) {
-      evolutionChainArr.push({ name: evolutionChain.species.name, canEvolve: false });
+      evolutionChainArr.push({
+        id: clearURL(evolutionChain.species.url),
+        name: evolutionChain.species.name,
+        canEvolve: false
+      });
       setPokemonEvolutionChain(evolutionChainArr);
       return;
     }
     if (!evolutionChainArr.length)
-      evolutionChainArr.push({ name: evolutionChain.species.name, canEvolve: true });
+      evolutionChainArr.push({
+        id: clearURL(evolutionChain.species.url),
+        name: evolutionChain.species.name,
+        canEvolve: true
+      });
 
     evolutionChain.evolves_to.forEach((pokemon) => {
       if (!pokemon.evolves_to.length) {
-        evolutionChainArr.push({ name: pokemon.species.name, canEvolve: false });
+        evolutionChainArr.push({
+          id: clearURL(pokemon.species.url),
+          name: pokemon.species.name,
+          canEvolve: false
+        });
         setPokemonEvolutionChain(evolutionChainArr);
         return;
       }
-      evolutionChainArr.push({ name: pokemon.species.name, canEvolve: true });
+      evolutionChainArr.push({
+        id: clearURL(evolutionChain.species.url),
+        name: pokemon.species.name,
+        canEvolve: true
+      });
       setPokemonEvolutionChain(evolutionChainArr);
       formatChain(pokemon);
     });
@@ -67,7 +86,7 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
             {pokemonThatEvolveList?.length
               ? pokemonThatEvolveList.map((pokemon) => (
                   <S.EvolutionCard key={pokemon.name}>
-                    <Card key={pokemon.name} pokemon={pokemon.name} light />
+                    <Card key={pokemon.name} pokemon={pokemon.id} light />
                     {pokemon.canEvolve && (
                       <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
                     )}
@@ -81,7 +100,7 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
                 hasManyEvolutions={pokemonThatDontEvolveList.length > 3}>
                 {pokemonThatDontEvolveList.map((pokemon) => (
                   <div key={pokemon.name}>
-                    <Card key={pokemon.name} pokemon={pokemon.name} light />
+                    <Card key={pokemon.name} pokemon={pokemon.id} light />
                   </div>
                 ))}
               </S.LastEvolutionGroup>
