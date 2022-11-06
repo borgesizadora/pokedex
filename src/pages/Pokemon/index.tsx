@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
 
-import Evolution from '~/components/Evolution';
 import Loader from '~/components/Loader';
-import StatsChart from '~/components/StatsChart';
+import Evolution from '~/pages/Pokemon/components/Evolution';
+import StatsChart from '~/pages/Pokemon/components/StatsChart';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 import { useTheme } from 'styled-components';
 

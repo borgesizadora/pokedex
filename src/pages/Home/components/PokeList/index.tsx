@@ -1,5 +1,5 @@
-import { Result } from '../../models/Pokemon';
-import Card from '../Card';
+import { Result } from '../../../../models/Pokemon';
+import Card from '../../../../components/Card';
 import * as S from './styles';
 
 interface IPokeList {

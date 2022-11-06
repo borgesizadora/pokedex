@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Loader from '~/components/Loader';
-import PokeList from '~/components/PokeList';
 import { Result } from '~/models/Pokemon';
+import PokeList from '~/pages/Home/components/PokeList';
 import { getAllPokemon } from '~/services/Pokemon/pokemonRequests';
 
 const LIMIT = 20;

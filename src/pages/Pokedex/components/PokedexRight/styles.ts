@@ -1,5 +1,6 @@
-import styled, { css } from "styled-components";
-import Layout from "./components/Layout";
+import styled, { css } from 'styled-components';
+
+import Layout from '../LayoutPokedexRight';
 
 export const Wrapper = styled.div`
   ${({ theme: { colors } }) => css`
@@ -53,7 +54,7 @@ export const YellowBall = styled.span`
     height: 80px;
     transform: scale(0.7);
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 9px;
       left: 8px;
@@ -65,7 +66,7 @@ export const YellowBall = styled.span`
       border-width: 0px 3px 8px 7px;
     }
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 20px;
       height: 20px;

@@ -1,13 +1,11 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    width: 370px;
-    height: 460px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    border-radius: 0 15px 15px 0;
-  `}
+  width: 370px;
+  height: 460px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 0 15px 15px 0;
 `;
 
 export const Header = styled.div`
@@ -17,7 +15,7 @@ export const Header = styled.div`
     height: 60px;
     position: relative;
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 0;
       height: 0;

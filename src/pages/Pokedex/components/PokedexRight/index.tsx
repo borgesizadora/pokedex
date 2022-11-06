@@ -1,7 +1,8 @@
-import { Pokemon } from "~/models/Pokemon";
-import Layout from "./components/Layout";
-import Screen from "./components/Screen";
-import * as S from "./styles";
+import { Pokemon } from '~/models/Pokemon';
+
+import Layout from '../LayoutPokedexRight';
+import Screen from '../Screen';
+import * as S from './styles';
 
 const PokedexRight: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (

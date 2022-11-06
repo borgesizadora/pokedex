@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from '~/components/Loader';
-import PokedexLayout from '~/components/PokedexLayout';
+import PokedexLayout from '~/pages/Pokedex/components/PokedexLayout';
 import { Pokemon as PokeType } from '~/models/Pokemon';
 import { getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 
