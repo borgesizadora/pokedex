@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import Card from '~/components/Card';
 import Loader from '~/components/Loader';
@@ -17,7 +18,6 @@ interface PokemonFromTree {
 }
 
 const Evolution: React.FC<{ url: string }> = ({ url }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [pokemonEvolutionChain, setPokemonEvolutionChain] = useState<PokemonFromTree[]>();
 
   const pokemonThatEvolveList = pokemonEvolutionChain?.filter((pokemon) => pokemon.canEvolve);
@@ -70,22 +70,16 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
     },
     [evolutionChainArr]
   );
-  const fetchPokemonSpecies = useCallback(async () => {
-    setIsLoading(true);
-    const resEvolutionChain = await getPokemonEvolutionChainByUrl(url);
-    formatChain(resEvolutionChain.chain);
 
-    setIsLoading(false);
-  }, [url, formatChain]);
+  const { isFetching } = useQuery(['pokemonChain', url], () => getPokemonEvolutionChainByUrl(url), {
+    onSuccess: (pokemonChain) => formatChain(pokemonChain?.chain)
+  });
+
   const { colors } = useTheme();
-
-  useEffect(() => {
-    fetchPokemonSpecies();
-  }, [url, fetchPokemonSpecies]);
 
   return (
     <S.Wrapper>
-      {isLoading ? (
+      {isFetching ? (
         <Loader />
       ) : (
         <>
