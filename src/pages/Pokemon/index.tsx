@@ -1,10 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link, useParams } from 'react-router-dom';
 
 import Evolution from '~/components/Evolution';
 import Loader from '~/components/Loader';
 import StatsChart from '~/components/StatsChart';
-import { Pokemon as IPokemon, PokemonSpecies } from '~/models/Pokemon';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 import { useTheme } from 'styled-components';
 
@@ -14,45 +13,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as S from './styles';
 
 const Pokemon = () => {
-  const [pokemonSpecies, setPokemonSpecies] = useState<PokemonSpecies>();
-  const [pokemon, setPokemon] = useState<IPokemon>();
-  const [isLoading, setIsLoading] = useState(false);
-
   const params = useParams();
   const { colors } = useTheme();
 
-  const fetchPokemon = useCallback(async () => {
-    if (params?.id) {
-      setIsLoading(true);
-      const resSpecies = await getPokemonSpecies(params.id);
-      const resPokemon = await getPokemonByIdOrName(params.id);
-      setPokemonSpecies(resSpecies);
-      setPokemon(resPokemon);
-      setIsLoading(false);
-    }
-  }, [params.id]);
+  const { isFetching: isFetchingSpecies, data: pokemonSpeciesData } = useQuery(
+    ['pokemonSpecies', params.id],
+    () => getPokemonSpecies(params.id!)
+  );
 
-  useEffect(() => {
-    fetchPokemon();
-  }, [params.id, fetchPokemon]);
+  const { isFetching: isFetchingPokemon, data: pokemonPokemonData } = useQuery(
+    ['pokemon', params.id],
+    () => getPokemonByIdOrName(params.id!)
+  );
 
   return (
     <S.Container>
-      {isLoading ? (
+      {isFetchingSpecies || isFetchingPokemon ? (
         <Loader color={colors.black} />
-      ) : params.id && pokemon ? (
+      ) : params.id && pokemonPokemonData ? (
         <S.Wrapper>
           <S.Header>
-            <Link to={`/pokemon/${Number(pokemon?.id) > 1 ? Number(pokemon?.id) - 1 : 1}`}>
+            <Link
+              to={`/pokemon/${
+                Number(pokemonPokemonData?.id) > 1 ? Number(pokemonPokemonData?.id) - 1 : 1
+              }`}>
               <S.HeaderButton>
                 <FontAwesomeIcon icon={faAngleLeft} />
                 <p>PREV POKEMON</p>
               </S.HeaderButton>
             </Link>
             <h1>
-              #{pokemonSpecies?.id} {pokemonSpecies?.name.toUpperCase()}
+              #{pokemonSpeciesData?.id} {pokemonSpeciesData?.name.toUpperCase()}
             </h1>
-            <Link to={`/pokemon/${Number(pokemon.id) + 1}`}>
+            <Link to={`/pokemon/${Number(pokemonPokemonData.id) + 1}`}>
               <S.HeaderButton>
                 <p>NEXT POKEMON</p>
                 <FontAwesomeIcon icon={faAngleRight} />
@@ -60,21 +53,21 @@ const Pokemon = () => {
             </Link>
           </S.Header>
           <S.Description>
-            {pokemonSpecies?.flavor_text_entries
+            {pokemonSpeciesData?.flavor_text_entries
               .find((entry) => entry.language.name === 'en')
               ?.flavor_text.replace(/\f/g, ' ')}
           </S.Description>
           <S.MainImage>
             <img
               src={
-                pokemon.sprites.other['official-artwork'].front_default ||
-                pokemon.sprites.front_default
+                pokemonPokemonData.sprites.other['official-artwork'].front_default ||
+                pokemonPokemonData.sprites.front_default
               }
-              alt={pokemon.name}
+              alt={pokemonPokemonData.name}
             />
           </S.MainImage>
-          <StatsChart stats={pokemon.stats} />
-          {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
+          <StatsChart stats={pokemonPokemonData.stats} />
+          {pokemonSpeciesData ? <Evolution url={pokemonSpeciesData?.evolution_chain.url} /> : null}
         </S.Wrapper>
       ) : null}
     </S.Container>
