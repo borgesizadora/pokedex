@@ -53,6 +53,12 @@ function Home() {
     };
   }, [handleObserver]);
 
+  useEffect(() => {
+    return () => {
+      setAllPokemonList([]);
+    };
+  }, []);
+
   return (
     <div>
       {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
