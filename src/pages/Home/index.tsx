@@ -12,7 +12,7 @@ function Home() {
   const [offset, setOffset] = useState(0);
   const [allPokemonList, setAllPokemonList] = useState<Result[]>([]);
 
-  const { isFetching, isSuccess } = useQuery(
+  const { isFetching, isFetchedAfterMount } = useQuery(
     ['pokemonList', offset],
     () => {
       return getAllPokemon(offset, LIMIT);
@@ -28,11 +28,11 @@ function Home() {
     (entries: IntersectionObserverEntry[]) => {
       const target = entries[0];
 
-      if (target.isIntersecting && isSuccess) {
+      if (target.isIntersecting && isFetchedAfterMount) {
         setOffset((prev) => prev + LIMIT);
       }
     },
-    [isSuccess]
+    [isFetchedAfterMount]
   );
 
   const row = useRef(null);
@@ -56,6 +56,7 @@ function Home() {
   useEffect(() => {
     return () => {
       setAllPokemonList([]);
+      setOffset(0);
     };
   }, []);
 
