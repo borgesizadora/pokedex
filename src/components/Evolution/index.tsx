@@ -89,14 +89,16 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
         <Loader />
       ) : (
         <>
-          <h2>EVOLUTION CHAIN:</h2>
+          <S.Title>EVOLUTION CHAIN:</S.Title>
           <S.EvolutionWrapper>
             {pokemonThatEvolveList?.length
               ? pokemonThatEvolveList.map((pokemon) => (
                   <S.EvolutionCard key={pokemon.name}>
                     <Card key={pokemon.name} pokemon={pokemon.id} light />
                     {pokemon.canEvolve && (
-                      <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
+                      <S.IconWrapper>
+                        <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
+                      </S.IconWrapper>
                     )}
                   </S.EvolutionCard>
                 ))

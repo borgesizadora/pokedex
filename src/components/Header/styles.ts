@@ -4,8 +4,7 @@ export const Header = styled.div`
   ${({ theme: { colors, spacing } }) => css`
     width: 100%;
     height: ${spacing.headerSpacing};
-    border-bottom: 2px solid ${colors.lightestGray};
-    background-color: ${colors.lightGray};
+    background-color: ${colors.mediumGray};
     position: fixed;
     display: flex;
     align-items: center;
@@ -33,8 +32,8 @@ export const LinksWrapper = styled.ul`
     display: flex;
     gap: 32px;
     & a {
-      font-size: 1.2rem;
-      font-weight: bold;
+      font-size: 1rem;
+      font-weight: 500;
       height: ${spacing.headerSpacing};
       display: flex;
       align-items: center;

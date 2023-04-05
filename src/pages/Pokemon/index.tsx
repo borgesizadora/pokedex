@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import Evolution from '~/components/Evolution';
 import Loader from '~/components/Loader';
 import StatsChart from '~/components/StatsChart';
+import TypeCard from '~/components/TypeCard';
 import { Pokemon as IPokemon, PokemonSpecies } from '~/models/Pokemon';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 import { useTheme } from 'styled-components';
@@ -42,16 +43,23 @@ const Pokemon = () => {
         <Loader color={colors.black} />
       ) : params.id && pokemon ? (
         <S.Wrapper>
-          <S.Header>
+          <S.Header type={pokemon.types[0].type.name}>
             <Link to={`/pokemon/${Number(pokemon?.id) > 1 ? Number(pokemon?.id) - 1 : 1}`}>
               <S.HeaderButton>
                 <FontAwesomeIcon icon={faAngleLeft} />
                 <p>PREV POKEMON</p>
               </S.HeaderButton>
             </Link>
-            <h1>
-              #{pokemonSpecies?.id} {pokemonSpecies?.name.toUpperCase()}
-            </h1>
+            <S.MainImage type={pokemon.types[0].type.name}>
+              <img
+                src={
+                  pokemon.sprites.other['official-artwork'].front_default ||
+                  pokemon.sprites.front_default
+                }
+                alt={pokemon.name}
+              />
+            </S.MainImage>
+
             <Link to={`/pokemon/${Number(pokemon.id) + 1}`}>
               <S.HeaderButton>
                 <p>NEXT POKEMON</p>
@@ -59,22 +67,27 @@ const Pokemon = () => {
               </S.HeaderButton>
             </Link>
           </S.Header>
-          <S.Description>
-            {pokemonSpecies?.flavor_text_entries
-              .find((entry) => entry.language.name === 'en')
-              ?.flavor_text.replace(/\f/g, ' ')}
-          </S.Description>
-          <S.MainImage>
-            <img
-              src={
-                pokemon.sprites.other['official-artwork'].front_default ||
-                pokemon.sprites.front_default
-              }
-              alt={pokemon.name}
-            />
-          </S.MainImage>
-          <StatsChart stats={pokemon.stats} />
-          {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
+          <S.Name>
+            #{pokemonSpecies?.id} {pokemonSpecies?.name.toUpperCase()}
+          </S.Name>
+          <S.Content>
+            <S.DescriptionStats>
+              <S.DescriptionContainer>
+                <S.Description>
+                  {pokemonSpecies?.flavor_text_entries
+                    .find((entry) => entry.language.name === 'en')
+                    ?.flavor_text.replace(/\f/g, ' ')}
+                </S.Description>
+                <div>
+                  {pokemon.types.map((type) => (
+                    <TypeCard key={type.type.name} typeName={type.type.name} />
+                  ))}
+                </div>
+              </S.DescriptionContainer>
+              <StatsChart stats={pokemon.stats} />
+            </S.DescriptionStats>
+            {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
+          </S.Content>
         </S.Wrapper>
       ) : null}
     </S.Container>

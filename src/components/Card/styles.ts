@@ -4,7 +4,8 @@ export const Container = styled.div<{ light: boolean }>`
   ${({ light, theme: { boxShadow, colors } }) => css`
     border: ${light ? '' : `3px solid ${colors.lightestGray}`};
     background-color: ${light ? colors.white : colors.black};
-    border-radius: 12px;
+    border-radius: 6px 36px;
+
     width: 250px;
     height: 250px;
     display: flex;
