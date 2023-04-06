@@ -10,11 +10,12 @@ import PokemonId from './pages/Pokedex/PokemonId';
 import Pokemon from './pages/Pokemon';
 import GlobalStyle from './shared/styles/global';
 import theme from './shared/styles/theme';
+const baseName = import.meta.env.VITE_BASE_NAME;
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename={baseName}>
         <PageLayout>
           <Routes>
             <Route path="/">
