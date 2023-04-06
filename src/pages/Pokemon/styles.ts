@@ -1,14 +1,16 @@
+import Skeleton from 'react-loading-skeleton';
+
 import { PokemonType } from '~/models/PokemonType';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  ${({ theme: { colors, spacing } }) => css`
+  ${({ theme: { spacing } }) => css`
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
-    background-color: ${colors.lightestGray};
     margin: 38px 10px;
     border-radius: 8px;
     overflow: hidden;
@@ -35,6 +37,7 @@ export const Wrapper = styled.div`
 export const Content = styled.div`
   ${({ theme: { colors } }) => css`
     min-width: 80%;
+    min-height: 58rem;
     background: ${colors.lightestGray};
     padding: 4rem;
     border-radius: 32px;
@@ -83,7 +86,7 @@ export const Header = styled.div<{ type: PokemonType }>`
     background-color: ${typesColors[type].primaryColor};
     filter: saturate(60%);
     color: ${colors.black};
-    align-items: stretch;
+    align-items: center;
     min-height: 150px;
     position: relative;
     margin-bottom: 6rem;
@@ -152,4 +155,8 @@ export const MainImage = styled.div<{ type: PokemonType }>`
 
 export const Name = styled.h1`
   font-family: 'Lato', sans-serif;
+`;
+
+export const TypeSkeleton = styled(Skeleton)`
+  border-radius: 99px;
 `;

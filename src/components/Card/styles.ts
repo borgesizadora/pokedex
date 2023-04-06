@@ -1,3 +1,5 @@
+import Skeleton from 'react-loading-skeleton';
+
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ light: boolean }>`
@@ -85,4 +87,10 @@ export const TypeCardWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 12px;
+`;
+
+export const CardSkeleton = styled(Skeleton)`
+  border-radius: 6px 36px;
+  width: 250px;
+  height: 250px;
 `;

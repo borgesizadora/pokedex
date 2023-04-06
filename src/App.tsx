@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import PageLayout from './components/PageLayout';
 import Home from './pages/Home';

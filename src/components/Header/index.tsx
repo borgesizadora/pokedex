@@ -25,9 +25,6 @@ const Header = () => {
             <li>
               <Link to={'/pokemon/1'}>POKEMON DATA</Link>
             </li>
-            <li>
-              <Link to={'/'}>ABOUT</Link>
-            </li>
           </S.LinksWrapper>
         </nav>
       </Container>

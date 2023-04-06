@@ -9,6 +9,7 @@ import { useTheme } from 'styled-components';
 import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { CardSkeleton } from '../Card/styles';
 import * as S from './styles';
 interface PokemonFromTree {
   id: string;
@@ -123,3 +124,21 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
 };
 
 export default Evolution;
+
+export const EvolutionSkeleton = () => {
+  const { colors } = useTheme();
+
+  return (
+    <S.EvolutionWrapper>
+      <S.EvolutionWrapper>
+        <S.EvolutionCard>
+          <CardSkeleton baseColor={colors.lightGray} />
+          <S.IconWrapper>
+            <FontAwesomeIcon icon={faAnglesRight} color={colors.mediumGray} size={'xl'} />
+          </S.IconWrapper>
+        </S.EvolutionCard>
+        <CardSkeleton baseColor={colors.lightGray} />
+      </S.EvolutionWrapper>
+    </S.EvolutionWrapper>
+  );
+};
