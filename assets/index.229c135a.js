@@ -89,7 +89,7 @@ Error generating stack: `+o.message+`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-`,Bx="/assets/pokemonLogo.e4fa62f7.svg",Wx=R.div`
+`,Bx="/pokedex/assets/pokemonLogo.e4fa62f7.svg",Wx=R.div`
   ${({theme:{colors:e,spacing:t}})=>F`
     width: 100%;
     height: ${t.headerSpacing};
