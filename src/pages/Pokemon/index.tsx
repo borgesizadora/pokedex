@@ -36,6 +36,7 @@ const Pokemon = () => {
 
   useEffect(() => {
     fetchPokemon();
+    window.scrollTo(0, 0);
   }, [params.id, fetchPokemon]);
 
   return (

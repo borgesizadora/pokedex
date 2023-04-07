@@ -50,6 +50,7 @@ export const Content = styled.div`
 export const DescriptionStats = styled.div`
   ${({ theme: { breakpoints } }) => css`
     display: flex;
+    gap: 2rem;
     width: 100%;
     justify-content: space-around;
     align-items: stretch;
