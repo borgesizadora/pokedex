@@ -21,6 +21,7 @@ export default {
     pokedexDarkest: '#810a1e'
   },
   breakpoints: {
+    xs: '390px',
     sm: '480px',
     md: '768px',
     lg: '1024px',

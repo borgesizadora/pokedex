@@ -8,7 +8,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
-    margin: 8rem 1rem;
+    margin: 8rem 0;
     border-radius: 8px;
     position: relative;
   `}

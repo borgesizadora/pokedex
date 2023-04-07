@@ -28,21 +28,22 @@ export const Container = styled.div<{ light: boolean }>`
 
 export const Wrapper = styled.div<{ light: boolean }>`
   ${({ light, theme: { colors } }) => css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;  
-  width: 250px;
-  height:250px;
-  text-transform: capitalize;
-  position: relative;
-  gap: 18px;
-background-color: ${light ? colors.white : ''};
-  
-  & img {
-    max-width: 100px;
-    max-height: 100px;
-    `}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    height: 250px;
+    text-transform: capitalize;
+    position: relative;
+    gap: 18px;
+    background-color: ${light ? colors.white : ''};
+
+    & img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  `}
 `;
 export const Header = styled.div<{ secondary: string }>`
   ${({ theme: { boxShadow, colors }, secondary }) => css`
