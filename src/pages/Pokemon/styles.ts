@@ -48,11 +48,18 @@ export const Content = styled.div`
   `}
 `;
 export const DescriptionStats = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  align-items: stretch;
+  ${({ theme: { breakpoints } }) => css`
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: stretch;
+
+    @media (max-width: ${breakpoints.md}) {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  `}
 `;
 export const DescriptionContainer = styled.div`
   display: flex;
@@ -68,12 +75,15 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const Description = styled.p`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, breakpoints } }) => css`
     width: 300px;
     padding: 2rem;
     border-radius: 8px;
     background: ${colors.lightGray};
     font-weight: 500;
+    @media (max-width: ${breakpoints.md}) {
+      margin-bottom: 1rem;
+    }
   `}
 `;
 
