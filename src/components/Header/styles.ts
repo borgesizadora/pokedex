@@ -33,7 +33,7 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
     top: 0;
-    z-index: 3;
+    z-index: 5;
     padding: 0 16px;
     & > div {
       display: flex;
