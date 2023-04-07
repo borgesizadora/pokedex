@@ -100,7 +100,7 @@ export const Header = styled.div<{ type: PokemonType }>`
 `;
 
 export const HeaderButton = styled.div`
-  ${({ theme: { colors } }) => css`
+  ${({ theme: { colors, breakpoints } }) => css`
     color: ${colors.lightestGray};
     font-weight: bold;
     border: 2px solid ${colors.darkBlue};
@@ -115,6 +115,26 @@ export const HeaderButton = styled.div`
     padding: 0 12px;
     & > p {
       flex: 1;
+    }
+    @media (max-width: ${breakpoints.md}) {
+      display: none;
+    }
+  `}
+`;
+export const HeaderButtonMobile = styled.div<{ isRight?: boolean }>`
+  ${({ isRight = false, theme: { colors, breakpoints } }) => css`
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: ${colors.darkBlue};
+    border-radius: 99px;
+    position: absolute;
+    top: 8rem;
+    ${isRight ? 'right: 0.2rem;' : 'left: 0.2rem;'}
+    @media (min-width: ${breakpoints.md}) {
+      display: none;
     }
   `}
 `;

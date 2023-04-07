@@ -32,6 +32,8 @@ const Pokemon = () => {
     }
   }, [params.id]);
 
+  const { colors } = useTheme();
+
   useEffect(() => {
     fetchPokemon();
   }, [params.id, fetchPokemon]);
@@ -48,6 +50,9 @@ const Pokemon = () => {
                 <FontAwesomeIcon icon={faAngleLeft} />
                 <p>PREV POKEMON</p>
               </S.HeaderButton>
+              <S.HeaderButtonMobile>
+                <FontAwesomeIcon icon={faAngleLeft} size="2x" color={colors.white} />
+              </S.HeaderButtonMobile>
             </Link>
             <S.MainImage type={pokemon.types[0].type.name}>
               <img
@@ -64,6 +69,9 @@ const Pokemon = () => {
                 <p>NEXT POKEMON</p>
                 <FontAwesomeIcon icon={faAngleRight} />
               </S.HeaderButton>
+              <S.HeaderButtonMobile isRight>
+                <FontAwesomeIcon icon={faAngleRight} size="2x" color={colors.white} />
+              </S.HeaderButtonMobile>
             </Link>
           </S.Header>
           <S.Name>
