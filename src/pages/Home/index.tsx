@@ -4,6 +4,8 @@ import Loader from '~/components/Loader';
 import PokeList from '~/components/PokeList';
 import useFetchPokemons from '~/shared/hooks/useFetchPokemons';
 
+import * as S from './styles';
+
 const LIMIT = 20;
 
 function Home() {
@@ -31,11 +33,19 @@ function Home() {
   }, [handleObserver]);
 
   return (
-    <div>
-      {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
-      <div ref={row} />
-      {loading && <Loader />}
-    </div>
+    <S.Container>
+      <S.IntroCard>
+        <p>
+          Here&#39;s a list of Pokemon from every generation. Click on any of them to get
+          information about their type, stats, and evolution chain!
+        </p>
+      </S.IntroCard>
+      <S.Wrapper>
+        {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
+        <div ref={row} />
+        {loading && <Loader />}
+      </S.Wrapper>
+    </S.Container>
   );
 }
 

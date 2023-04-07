@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
     background-color: ${colors.mediumGray};
-    border-radius: 8px;
+    border-radius: 32px;
     overflow: hidden;
     gap: 2rem;
     color: ${colors.darkGray};

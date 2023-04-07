@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 export const Container = styled.div<{ light: boolean }>`
   ${({ light, theme: { boxShadow, colors } }) => css`
     border: ${light ? '' : `3px solid ${colors.lightestGray}`};
-    background-color: ${light ? colors.white : colors.black};
+    background-color: ${light ? colors.white : colors.lightestGray};
     border-radius: 6px 36px;
 
     width: 250px;
