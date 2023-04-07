@@ -1483,26 +1483,41 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 `,XS=R.h2`
   ${({theme:{colors:e}})=>F`
     color: ${e.darkBlue};
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem;
     font-family: 'Lato', sans-serif;
   `}
 `,Iu=R.div`
-  display: flex;
-  align-items: center;
+  ${({theme:{breakpoints:e}})=>F`
+    display: flex;
+    align-items: center;
+    @media (max-width: ${e.lg}) {
+      flex-direction: column;
+    }
+  `}
 `,lg=R.div`
-  display: flex;
-  align-items: center;
+  ${({theme:{breakpoints:e}})=>F`
+    display: flex;
+    align-items: center;
+    @media (max-width: ${e.lg}) {
+      flex-direction: column;
+    }
+  `}
 `,sg=R.span`
-  margin: 1rem;
+  ${({theme:{breakpoints:e}})=>F`
+    margin: 1rem;
+    @media (max-width: ${e.lg}) {
+      transform: rotate(90deg);
+    }
+  `}
 `,JS=R.div`
   ${({hasManyEvolutions:e,showShadow:t,theme:{boxShadow:n}})=>F`
-    padding: 24px ${t?"24px":0};
+    ${t&&"padding: 24px;"}
     display: flex;
     flex-direction: ${e?"row":"column"};
     gap: 24px;
     flex-wrap: wrap;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 32px;
     box-shadow: ${t?n.dark:""};
   `}
 `,ZS=({url:e})=>{const[t,n]=_.exports.useState(!1),[r,i]=_.exports.useState(),o=r==null?void 0:r.filter(p=>p.canEvolve),a=r==null?void 0:r.filter(p=>!p.canEvolve),l=(p,v)=>p.includes("https://pokeapi.co/api/v2/pokemon-species/")?p.replace("https://pokeapi.co/api/v2/pokemon-species/","").replace("/",""):v,s=_.exports.useMemo(()=>[],[]),u=_.exports.useCallback(p=>{if(!p.evolves_to.length){s.push({id:l(p.species.url,p.species.name),name:p.species.name,canEvolve:!1}),i(s);return}s.length||s.push({id:l(p.species.url,p.species.name),name:p.species.name,canEvolve:!0}),p.evolves_to.forEach(v=>{if(!v.evolves_to.length){s.push({id:l(v.species.url,v.species.name),name:v.species.name,canEvolve:!1}),i(s);return}s.push({id:l(v.species.url,v.species.name),name:v.species.name,canEvolve:!0}),i(s),u(v)})},[s]),c=_.exports.useCallback(async()=>{n(!0);const p=await nk(e);u(p.chain),n(!1)},[e,u]),{colors:d}=nr();return _.exports.useEffect(()=>{c()},[e,c]),x(KS,{children:t?x(hl,{}):M(Ji,{children:[x(XS,{children:"EVOLUTION CHAIN:"}),M(Iu,{children:[o!=null&&o.length?o.map(p=>M(lg,{children:[x(yu,{pokemon:p.id,light:!0},p.name),p.canEvolve&&x(sg,{children:x(mt,{icon:Ov,color:d.black,size:"xl"})})]},p.name)):null,a!=null&&a.length?x(JS,{showShadow:a.length>1,hasManyEvolutions:a.length>3,children:a.map(p=>x("div",{children:x(yu,{pokemon:p.id,light:!0},p.name)},p.name))}):null]})]})})},qS=()=>{const{colors:e}=nr();return x(Iu,{children:M(Iu,{children:[M(lg,{children:[x(Kd,{baseColor:e.lightGray}),x(sg,{children:x(mt,{icon:Ov,color:e.mediumGray,size:"xl"})})]}),x(Kd,{baseColor:e.lightGray})]})})},eE=R.div`
