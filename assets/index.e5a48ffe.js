@@ -1592,11 +1592,18 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     gap: 4rem;
   `}
 `,dg=R.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  align-items: stretch;
+  ${({theme:{breakpoints:e}})=>F`
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: stretch;
+
+    @media (max-width: ${e.md}) {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  `}
 `,pg=R.div`
   display: flex;
   flex-direction: column;
@@ -1609,12 +1616,15 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     gap: 1rem;
   }
 `,lE=R.p`
-  ${({theme:{colors:e}})=>F`
+  ${({theme:{colors:e,breakpoints:t}})=>F`
     width: 300px;
     padding: 2rem;
     border-radius: 8px;
     background: ${e.lightGray};
     font-weight: 500;
+    @media (max-width: ${t.md}) {
+      margin-bottom: 1rem;
+    }
   `}
 `,mg=R.div`
   ${({type:e,theme:{colors:t,typesColors:n}})=>F`
