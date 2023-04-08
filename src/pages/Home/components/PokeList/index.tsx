@@ -9,8 +9,8 @@ interface IPokeList {
 const PokeList: React.FC<IPokeList> = ({ pokemonList }) => {
   return (
     <S.Wrapper>
-      {pokemonList.map((pokemon) => {
-        return <Card key={pokemon.name} pokemon={pokemon.name} />;
+      {pokemonList.map((pokemon, i) => {
+        return <Card key={pokemon.name + i} pokemon={pokemon.name} />;
       })}
     </S.Wrapper>
   );
