@@ -6,12 +6,18 @@ import { Result } from '~/models/Pokemon';
 import PokeList from '~/pages/Home/components/PokeList';
 import { getAllPokemon } from '~/services/Pokemon/pokemonRequests';
 
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import './styles.css';
+
 import * as S from './styles';
+
+import { PokemonType } from '~/models/PokemonType';
 
 const LIMIT = 20;
 
 function Home() {
   const [offset, setOffset] = useState(0);
+  const [filter, setFilter] = useState<PokemonType | null>(null);
   const [allPokemonList, setAllPokemonList] = useState<Result[]>([]);
 
   const { isFetching, isFetchedAfterMount } = useQuery(
@@ -77,6 +83,7 @@ function Home() {
         </p>
       </S.IntroCard>
       <S.Wrapper>
+        <DropdownMenuDemo />
         {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
         <div ref={row} />
         {isFetching && <Loader />}
@@ -86,3 +93,52 @@ function Home() {
 }
 
 export default Home;
+
+const DropdownMenuDemo = () => {
+  const pokemonTypes = [
+    'normal',
+    'fighting',
+    'flying',
+    'poison',
+    'ground',
+    'rock',
+    'bug',
+    'ghost',
+    'steel',
+    'fire',
+    'water',
+    'grass',
+    'electric',
+    'psychic',
+    'ice',
+    'dragon',
+    'dark',
+    'fairy',
+    'unknown',
+    'shadow'
+  ];
+
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button className="IconButton" aria-label="Customise options">
+          Filter
+        </button>
+      </DropdownMenu.Trigger>
+
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
+          <DropdownMenu.Label className="DropdownMenuLabel">Filter by:</DropdownMenu.Label>
+          <DropdownMenu.Separator className="DropdownMenuSeparator" />
+          {pokemonTypes.map((type) => (
+            <DropdownMenu.Item key={type} className="DropdownMenuItem">
+              {type}
+            </DropdownMenu.Item>
+          ))}
+
+          <DropdownMenu.Arrow className="DropdownMenuArrow" />
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
+};
