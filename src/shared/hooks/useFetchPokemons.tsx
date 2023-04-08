@@ -18,6 +18,7 @@ function useFetchPokemons(offset: number) {
       setAllPokemonList((prevState) => [...prevState, ...res.results]);
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       setError(!!err);
     }
   }, [offset]);

@@ -32,6 +32,12 @@ function Home() {
     if (row.current) observer.observe(row.current);
   }, [handleObserver]);
 
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   return (
     <S.Container>
       <S.IntroCard>
