@@ -73,7 +73,8 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
   );
 
   const { isFetching } = useQuery(['pokemonChain', url], () => getPokemonEvolutionChainByUrl(url), {
-    onSuccess: (pokemonChain) => formatChain(pokemonChain?.chain)
+    onSuccess: (pokemonChain) => formatChain(pokemonChain?.chain),
+    refetchOnWindowFocus: false
   });
 
   const { colors } = useTheme();

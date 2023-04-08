@@ -4,6 +4,7 @@ This is a PokeDex web application created using React with Vite. The app uses th
 
 The application uses several external libraries, including:
 
+- React Query
 - Radix
 - Axios
 - React Router DOM
