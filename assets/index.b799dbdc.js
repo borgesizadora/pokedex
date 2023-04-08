@@ -1394,7 +1394,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 50px 0;
-`,i3=({pokemonList:e})=>w(r3,{children:e.map((t,n)=>w(Oc,{pokemon:t.name},`${t.name}-${n}`))}),o3=$.div`
+`,i3=({pokemonList:e})=>w(r3,{children:e.map((t,n)=>w(Oc,{pokemon:t.name},t.name+n))}),o3=$.div`
   ${({theme:{spacing:e}})=>F`
     width: 100%;
     display: flex;
