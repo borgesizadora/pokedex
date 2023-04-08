@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 8rem 0;
+  margin: 4rem 0;
   border-radius: 99px;
   position: relative;
   background-color: white;
@@ -56,4 +56,19 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+
+export const ComingSoon = styled.span`
+  ${({ theme: { colors } }) => css`
+    position: absolute;
+    width: 300px;
+    z-index: 3;
+    transform: rotate(45deg);
+    padding: 1rem;
+    top: 30px;
+    font-size: 1.2rem;
+    right: -90px;
+    font-weight: 500;
+    background: ${colors.yellowMedium};
+  `}
 `;

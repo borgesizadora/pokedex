@@ -23,6 +23,7 @@ export const Battle = () => {
   return (
     <S.Container>
       <S.Wrapper>
+        <S.ComingSoon>Coming soon</S.ComingSoon>
         <S.Content>
           {pokemon1 && <BattlePkmFront pokemon={pokemon1} />}
           {pokemon2 && <BattlePkmBack pokemon={pokemon2} />}

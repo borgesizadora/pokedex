@@ -115,11 +115,11 @@ export const IconButton = styled.button`
 
 export const NavigationMenuRoot = styled(NavigationMenu.Root)`
   ${({ theme: { breakpoints } }) => css`
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-    @media (min-width: ${breakpoints.md}) {
-      display: none;
+    display: none;
+    @media (max-width: ${breakpoints.md}) {
+      display: flex;
+      justify-content: center;
+      z-index: 1;
     }
   `}
 `;

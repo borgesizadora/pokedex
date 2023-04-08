@@ -13,6 +13,7 @@ export default {
     grassGreenLight: '#ADD46F',
     grassGreenDark: '#7DC67E',
     yellow: '#feee6d',
+    yellowMedium: '#FACC15',
     mediumYellow: '#c7a400',
     darkYellow: '#9f8a0d',
     red: '#e5092e',

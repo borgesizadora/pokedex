@@ -9,14 +9,19 @@ const bounce = keyframes`
 `;
 
 export const PokemonWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  height: 25rem;
+  ${({ theme: { breakpoints } }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    height: 25rem;
+    @media (max-width: ${breakpoints.md}) {
+      flex-direction: column;
+    }
+  `}
 `;
 
 export const PokemonData = styled.span`
-  ${({ theme: { colors, boxShadow } }) => css`
+  ${({ theme: { colors, boxShadow, breakpoints } }) => css`
     border-radius: 32px 6px;
     padding: 1.5rem;
     border: 2px solid ${colors.lightGray};
@@ -24,8 +29,12 @@ export const PokemonData = styled.span`
     background: ${colors.white};
     align-self: flex-end;
     width: 500px;
+    max-width: calc(100vw - 2rem);
     margin-bottom: 2rem;
     text-align: end;
+    @media (max-width: ${breakpoints.md}) {
+      align-self: flex-start;
+    }
     & h2 {
       font-size: 1.2rem;
     }
@@ -33,7 +42,12 @@ export const PokemonData = styled.span`
 `;
 
 export const PokeGround = styled.div`
-  align-self: flex-end;
+  ${({ theme: { breakpoints } }) => css`
+    align-self: center;
+    @media (max-width: ${breakpoints.md}) {
+      align-self: flex-start;
+    }
+  `}
 `;
 
 export const Pokemon2 = styled.div`
