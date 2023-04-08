@@ -2,8 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Link, useParams } from 'react-router-dom';
 
-import Evolution, { EvolutionSkeleton } from '~/components/Evolution';
-import StatsChart from '~/components/StatsChart';
 import TypeCard from '~/components/TypeCard';
 import { Pokemon as IPokemon, PokemonSpecies } from '~/models/Pokemon';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
@@ -12,6 +10,8 @@ import { useTheme } from 'styled-components';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Evolution, { EvolutionSkeleton } from '../components/Evolution';
+import StatsChart from '../components/StatsChart';
 import * as S from './styles';
 
 const PokemonId = () => {

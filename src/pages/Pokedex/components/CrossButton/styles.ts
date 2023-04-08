@@ -1,18 +1,13 @@
 import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  ${({ theme: { colors } }) => css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  `}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const ButtonContainer = styled.div`
-  ${({ theme: { colors } }) => css`
-    position: relative;
-    background: ${colors.black};
-  `}
+  position: relative;
 `;
 
 export const Button = styled.div`
@@ -61,7 +56,5 @@ export const ButtonShaddow = styled.div`
 `;
 
 export const HorizontalBtnsContainer = styled.div`
-  ${({ theme: { colors } }) => css`
-    display: flex;
-  `}
+  display: flex;
 `;

@@ -1,6 +1,6 @@
+import { ProgressBar } from '~/components/ProgressBar';
 import { PokeStat } from '~/models/Pokemon';
 
-import { ProgressBar } from '../ProgressBar';
 import * as S from './styles';
 
 interface StatsChartProp {

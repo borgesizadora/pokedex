@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from '~/components/Loader';
-import PokedexLayout from '~/components/PokedexLayout';
 import { Pokemon as PokeType } from '~/models/Pokemon';
 import { getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import PokedexLayout from '../components/PokedexLayout';
 import * as S from './styles';
 
 const PokedexId = () => {

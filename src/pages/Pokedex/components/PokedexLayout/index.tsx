@@ -1,8 +1,8 @@
 import { Pokemon } from '~/models/Pokemon';
 import { useTheme } from 'styled-components';
 
-import BottomPart from './components/BottomPart';
-import PokedexRight from './components/PokedexRight';
+import BottomPart from '../BottomPart';
+import PokedexRight from '../PokedexRight';
 import * as S from './styles';
 
 interface IPokedexLayout {
