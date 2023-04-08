@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import * as S from './styles';
 
-const PokemonId = () => {
+const PokedexId = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pokemon, setPokemon] = useState<PokeType>();
 
@@ -47,4 +47,4 @@ const PokemonId = () => {
   );
 };
 
-export default PokemonId;
+export default PokedexId;

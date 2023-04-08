@@ -72,7 +72,6 @@ export const ImgWrapper = styled.div`
 export const Warning = styled.span`
   align-self: flex-end;
   display: flex;
-  /* align-items: center; */
   padding: 0.5rem;
   gap: 0.5rem;
   font-size: 0.8rem;

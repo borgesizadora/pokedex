@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ light: boolean }>`
-  ${({ light, theme: { boxShadow, colors } }) => css`
+  ${({ light, theme: { boxShadow, colors, breakpoints } }) => css`
     border: ${light ? '' : `3px solid ${colors.lightestGray}`};
     background-color: ${light ? colors.white : colors.lightestGray};
     border-radius: 6px 36px;
@@ -18,10 +18,12 @@ export const Container = styled.div<{ light: boolean }>`
     cursor: pointer;
     transition: transform 0.2s;
     box-shadow: ${boxShadow.dark};
-    &:hover {
-      position: relative;
-      transform: scale(1.1);
-      z-index: 2;
+    @media (min-width: ${breakpoints.lg}) {
+      &:hover {
+        position: relative;
+        transform: scale(1.1);
+        z-index: 2;
+      }
     }
   `}
 `;

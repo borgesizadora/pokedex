@@ -28,7 +28,7 @@ export const Header = styled.div`
   ${({ theme: { colors, spacing } }) => css`
     width: 100%;
     height: ${spacing.headerSpacing};
-    background-color: ${colors.mediumGray};
+    background-color: ${colors.black};
     position: fixed;
     display: flex;
     align-items: center;
@@ -45,28 +45,45 @@ export const Header = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  justify-self: flex-start;
-  & img {
-    max-width: 120px;
+  & > a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: 'Lato', sans-serif;
   }
 `;
 
 export const LinksWrapper = styled.ul`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const LinkContainer = styled.li`
   ${({ theme: { colors, spacing } }) => css`
-    display: flex;
-    gap: 32px;
-    & a {
-      font-size: 1rem;
-      font-weight: 500;
+    & svg {
+      color: ${colors.white};
+    }
+    & > a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem 0;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 400;
       height: ${spacing.headerSpacing};
       display: flex;
       align-items: center;
-      border-bottom: 3px solid transparent;
-      padding: 0 15px;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
       transition: all 300ms;
-      &:hover {
-        border-bottom: 3px solid ${colors.lightBlue};
-        background-color: ${colors.mediumGray};
+      min-width: 7rem;
+      &:hover,
+      &.active {
+        border-bottom: 2px solid ${colors.lightBlue};
+        background-color: ${colors.darkGray};
       }
     }
   `}
@@ -117,21 +134,21 @@ export const NavMenuTrigger = styled(NavigationMenu.Trigger)`
   ${({ theme: { colors } }) => css`
     padding: 0.8rem;
     border: none;
+    width: 45px;
+    height: 45px;
     border-radius: 99px;
     line-height: 0;
-    color: ${colors.darkBlue};
+    color: ${colors.black};
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   `}
 `;
 
 export const NavigationMenuContent = styled(NavigationMenu.Content)`
-  ${({ theme: { colors } }) => css`
-    border: 1px solid red;
-    height: 100vh;
-    opacity: 0.1;
-  `}
+  border: 1px solid red;
+  height: 100vh;
+  opacity: 0.1;
 `;
 
 export const NavMenuLink = styled(NavigationMenu.Link)`
@@ -152,21 +169,30 @@ export const NavigationMenuContentUL = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 2rem 1rem;
+  align-items: end;
+  padding: 2rem 0 2rem 1rem;
   gap: 1rem;
 `;
 export const NavigatioMenuLi = styled.li`
   ${({ theme: { colors, boxShadow } }) => css`
-    border-radius: 8px;
-    background: ${colors.lightGray};
+    border-radius: 99px 0 0 99px;
+    background: ${colors.darkGray};
     box-shadow: ${boxShadow.dark};
+    width: 80%;
     & > a {
       height: 100%;
-      width: 100%;
       padding: 1rem;
-      color: ${colors.darkBlue};
-      font-weight: 700;
+      color: ${colors.white};
+      font-weight: 500;
       display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      &.active {
+        border-radius: 99px 0 0 99px;
+        border: 3px solid ${colors.white};
+        border-right: 0;
+      }
     }
   `}
 `;
@@ -174,11 +200,10 @@ export const NavigatioMenuLi = styled.li`
 export const NavigationMenuViewport = styled(NavigationMenu.Viewport)`
   ${({ theme: { colors, boxShadow } }) => css`
     width: 100vw;
-
     position: fixed;
     left: -16px;
     margin-top: 7px;
-    background-color: ${colors.mediumGray};
+    background-color: ${colors.black};
     border-radius: 0 0 6px 6px;
     overflow: hidden;
     box-shadow: ${boxShadow.dark};

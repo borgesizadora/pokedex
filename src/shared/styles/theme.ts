@@ -28,7 +28,7 @@ export default {
     xl: '1440px'
   },
   spacing: {
-    headerSpacing: '65px'
+    headerSpacing: '75px'
   },
   boxShadow: {
     dark: '0 0 6px rgba(0, 0, 0, 0.3)',

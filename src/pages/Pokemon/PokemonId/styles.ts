@@ -113,14 +113,14 @@ export const Header = styled.div<{ type: PokemonType }>`
 export const HeaderButton = styled.div`
   ${({ theme: { colors, breakpoints } }) => css`
     color: ${colors.lightestGray};
-    font-weight: bold;
+    font-weight: 500;
     border: 2px solid ${colors.darkBlue};
     background: ${colors.darkBlue};
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: 8px;
+    border-radius: 99px;
     width: 200px;
     height: 3rem;
     padding: 0 12px;
