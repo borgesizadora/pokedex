@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Card from '~/components/Card';
+import { CardSkeleton } from '~/components/Card/styles';
 import Loader from '~/components/Loader';
 import { PokemonEvolution } from '~/models/Pokemon';
 import { getPokemonEvolutionChainByUrl } from '~/services/Pokemon/pokemonRequests';
@@ -83,14 +84,16 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
         <Loader />
       ) : (
         <>
-          <h2>EVOLUTION CHAIN:</h2>
+          <S.Title>EVOLUTION CHAIN:</S.Title>
           <S.EvolutionWrapper>
             {pokemonThatEvolveList?.length
               ? pokemonThatEvolveList.map((pokemon) => (
                   <S.EvolutionCard key={pokemon.name}>
                     <Card key={pokemon.name} pokemon={pokemon.id} light />
                     {pokemon.canEvolve && (
-                      <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
+                      <S.IconWrapper>
+                        <FontAwesomeIcon icon={faAnglesRight} color={colors.black} size={'xl'} />
+                      </S.IconWrapper>
                     )}
                   </S.EvolutionCard>
                 ))
@@ -115,3 +118,21 @@ const Evolution: React.FC<{ url: string }> = ({ url }) => {
 };
 
 export default Evolution;
+
+export const EvolutionSkeleton = () => {
+  const { colors } = useTheme();
+
+  return (
+    <S.EvolutionWrapper>
+      <S.EvolutionWrapper>
+        <S.EvolutionCard>
+          <CardSkeleton baseColor={colors.lightGray} />
+          <S.IconWrapper>
+            <FontAwesomeIcon icon={faAnglesRight} color={colors.mediumGray} size={'xl'} />
+          </S.IconWrapper>
+        </S.EvolutionCard>
+        <CardSkeleton baseColor={colors.lightGray} />
+      </S.EvolutionWrapper>
+    </S.EvolutionWrapper>
+  );
+};
