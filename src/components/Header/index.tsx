@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Pokeball from '~/assets/pokeball.svg';
 import logo from '~/assets/pokemonLogo.svg';
 
-import { faCircleInfo, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faHouse, faUserNinja } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
@@ -42,6 +42,12 @@ const Header = () => {
               <NavLink to={'/pokemon/1'} className={isPokemonActive ? 'active' : 'inactive'}>
                 <FontAwesomeIcon icon={faCircleInfo} size={'2x'} />
                 Pokemon Data
+              </NavLink>
+            </S.LinkContainer>
+            <S.LinkContainer>
+              <NavLink to={'/battle'}>
+                <FontAwesomeIcon icon={faUserNinja} size={'2x'} />
+                Battle
               </NavLink>
             </S.LinkContainer>
           </S.LinksWrapper>
@@ -88,6 +94,14 @@ export const MobileMenu = () => {
                   <NavLink to={'/pokemon/1'} className={isPokemonActive ? 'active' : 'inactive'}>
                     <FontAwesomeIcon icon={faCircleInfo} size={'2x'} />
                     Pokemon Data
+                  </NavLink>
+                </NavigationMenu.Link>
+              </S.NavigatioMenuLi>
+              <S.NavigatioMenuLi>
+                <NavigationMenu.Link asChild>
+                  <NavLink to={'/battle'}>
+                    <FontAwesomeIcon icon={faUserNinja} size={'2x'} />
+                    Battle
                   </NavLink>
                 </NavigationMenu.Link>
               </S.NavigatioMenuLi>

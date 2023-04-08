@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import PageLayout from './components/PageLayout';
+import { Battle } from './pages/Battle';
 import Home from './pages/Home';
 import PokedexId from './pages/Pokedex/PokedexId';
 import PokemonId from './pages/Pokemon/PokemonId';
@@ -21,6 +22,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="pokedex/:id" element={<PokedexId />} />
               <Route path="pokemon/:id" element={<PokemonId />} />
+              <Route path="battle" element={<Battle />} />
               <Route path="*" element={<div>Not found</div>} />
             </Route>
           </Routes>

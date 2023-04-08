@@ -1,5 +1,6 @@
 import { PokeStat } from '~/models/Pokemon';
 
+import { ProgressBar } from '../ProgressBar';
 import * as S from './styles';
 
 interface StatsChartProp {
@@ -12,12 +13,12 @@ const StatsChart: React.FC<StatsChartProp> = ({ stats }) => {
       <h3>Stats</h3>
       <S.AllSkillsContainer>
         {stats.map((stat) => (
-          <S.SkillContainer key={stat.stat.name}>
-            <S.Text>{stat.stat.name.toUpperCase()}</S.Text>
-            <S.SkillBar value={stat.base_stat}>
-              <S.SkillValue value={stat.base_stat}>{stat.base_stat}</S.SkillValue>
-            </S.SkillBar>
-          </S.SkillContainer>
+          <ProgressBar
+            key={stat.stat.name}
+            name={stat.stat.name}
+            maxValue={stat.base_stat}
+            currentValue={stat.base_stat}
+          />
         ))}
       </S.AllSkillsContainer>
     </S.Wrapper>

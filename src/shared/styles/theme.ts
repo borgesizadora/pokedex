@@ -10,6 +10,8 @@ export default {
     mediumBlue: '#0284C7',
     darkBlue: '#075985',
     green: '#55ab62',
+    grassGreenLight: '#ADD46F',
+    grassGreenDark: '#7DC67E',
     yellow: '#feee6d',
     mediumYellow: '#c7a400',
     darkYellow: '#9f8a0d',
