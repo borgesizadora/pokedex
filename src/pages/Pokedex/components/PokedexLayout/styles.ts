@@ -2,10 +2,18 @@ import { css } from 'styled-components';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
+  ${({ theme: { breakpoints } }) => css`
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1rem;
+    overflow: hidden;
+    @media (max-width: ${breakpoints.xs}) {
+      scale: 90%;
+    }
+  `}
 `;
 export const PokedexLeft = styled.div`
   ${({ theme: { colors } }) => css`

@@ -1,10 +1,13 @@
+import Skeleton from 'react-loading-skeleton';
+
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div<{ light: boolean }>`
-  ${({ light, theme: { boxShadow, colors } }) => css`
+  ${({ light, theme: { boxShadow, colors, breakpoints } }) => css`
     border: ${light ? '' : `3px solid ${colors.lightestGray}`};
-    background-color: ${light ? colors.white : colors.black};
-    border-radius: 12px;
+    background-color: ${light ? colors.white : colors.lightestGray};
+    border-radius: 6px 36px;
+
     width: 250px;
     height: 250px;
     display: flex;
@@ -15,31 +18,34 @@ export const Container = styled.div<{ light: boolean }>`
     cursor: pointer;
     transition: transform 0.2s;
     box-shadow: ${boxShadow.dark};
-    &:hover {
-      position: relative;
-      transform: scale(1.1);
-      z-index: 2;
+    @media (min-width: ${breakpoints.lg}) {
+      &:hover {
+        position: relative;
+        transform: scale(1.1);
+        z-index: 2;
+      }
     }
   `}
 `;
 
 export const Wrapper = styled.div<{ light: boolean }>`
   ${({ light, theme: { colors } }) => css`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;  
-  width: 250px;
-  height:250px;
-  text-transform: capitalize;
-  position: relative;
-  gap: 18px;
-background-color: ${light ? colors.white : ''};
-  
-  & img {
-    max-width: 100px;
-    max-height: 100px;
-    `}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    height: 250px;
+    text-transform: capitalize;
+    position: relative;
+    gap: 18px;
+    background-color: ${light ? colors.white : ''};
+
+    & img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  `}
 `;
 export const Header = styled.div<{ secondary: string }>`
   ${({ theme: { boxShadow, colors }, secondary }) => css`
@@ -84,4 +90,10 @@ export const TypeCardWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 12px;
+`;
+
+export const CardSkeleton = styled(Skeleton)`
+  border-radius: 6px 36px;
+  width: 250px;
+  height: 250px;
 `;

@@ -59,3 +59,9 @@ const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
 };
 
 export default Card;
+
+export const CardSkeleton = () => {
+  const { colors } = useTheme();
+
+  return <S.CardSkeleton baseColor={colors.lightGray} />;
+};

@@ -6,6 +6,8 @@ import { Result } from '~/models/Pokemon';
 import PokeList from '~/pages/Home/components/PokeList';
 import { getAllPokemon } from '~/services/Pokemon/pokemonRequests';
 
+import * as S from './styles';
+
 const LIMIT = 20;
 
 function Home() {
@@ -60,12 +62,26 @@ function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   return (
-    <div>
-      {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
-      <div ref={row} />
-      {isFetching && <Loader />}
-    </div>
+    <S.Container>
+      <S.IntroCard>
+        <p>
+          Here&#39;s a list of Pokemon from every generation. Click on any of them to get
+          information about their type, stats, and evolution chain!
+        </p>
+      </S.IntroCard>
+      <S.Wrapper>
+        {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
+        <div ref={row} />
+        {isFetching && <Loader />}
+      </S.Wrapper>
+    </S.Container>
   );
 }
 

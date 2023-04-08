@@ -12,7 +12,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;

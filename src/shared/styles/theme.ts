@@ -1,15 +1,19 @@
 export default {
   colors: {
-    white: '#f7f8f9',
-    lightestGray: '#ccc',
-    lightGray: '#3d3d3d',
-    mediumGray: '#444444',
-    darkGray: '#242424',
-    black: '#141414',
-    lightBlue: '#0bcdff',
-    mediumBlue: '#0e96c6',
+    white: '#F3F4F6',
+    lightestGray: '#F3F4F6',
+    lightGray: '#D1D5DB',
+    mediumGray: '#6B7280',
+    darkGray: '#1F2937',
+    black: '#111827',
+    lightBlue: '#7DD3FC',
+    mediumBlue: '#0284C7',
+    darkBlue: '#075985',
     green: '#55ab62',
+    grassGreenLight: '#ADD46F',
+    grassGreenDark: '#7DC67E',
     yellow: '#feee6d',
+    yellowMedium: '#FACC15',
     mediumYellow: '#c7a400',
     darkYellow: '#9f8a0d',
     red: '#e5092e',
@@ -20,13 +24,14 @@ export default {
     pokedexDarkest: '#810a1e'
   },
   breakpoints: {
+    xs: '390px',
     sm: '480px',
     md: '768px',
     lg: '1024px',
     xl: '1440px'
   },
   spacing: {
-    headerSpacing: '65px'
+    headerSpacing: '75px'
   },
   boxShadow: {
     dark: '0 0 6px rgba(0, 0, 0, 0.3)',
