@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import PageLayout from './components/PageLayout';
 import { Battle } from './pages/Battle';
 import Home from './pages/Home';
+import { PokeListProvider } from './pages/Home/pokeListContext';
 import PokedexId from './pages/Pokedex/PokedexId';
 import PokemonId from './pages/Pokemon/PokemonId';
 import GlobalStyle from './shared/styles/global';
@@ -20,15 +21,17 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter basename={baseName}>
           <PageLayout>
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="pokedex/:id" element={<PokedexId />} />
-                <Route path="pokemon/:id" element={<PokemonId />} />
-                <Route path="battle" element={<Battle />} />
-                <Route path="*" element={<div>Not found</div>} />
-              </Route>
-            </Routes>
+            <PokeListProvider>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Home />} />
+                  <Route path="pokedex/:id" element={<PokedexId />} />
+                  <Route path="pokemon/:id" element={<PokemonId />} />
+                  <Route path="battle" element={<Battle />} />
+                  <Route path="*" element={<div>Not found</div>} />
+                </Route>
+              </Routes>
+            </PokeListProvider>
           </PageLayout>
         </BrowserRouter>
         <GlobalStyle />

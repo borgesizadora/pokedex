@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Pokemon } from '~/models/Pokemon';
+import { usePokeList } from '~/pages/Home/pokeListContext';
 import { getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 import { useTheme } from 'styled-components';
 
@@ -12,15 +13,21 @@ import * as S from './styles';
 interface ICard {
   pokemon: string;
   light?: boolean;
+  isHome?: boolean;
 }
 
-const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false }) => {
+const Card: React.FC<ICard> = ({ pokemon: pokemonProp, light = false, isHome = false }) => {
   const [pokemon, setPokemon] = useState<Pokemon>();
+
+  const { pokemonList } = usePokeList();
 
   useEffect(() => {
     const fetchPokemon = async () => {
       const res = await getPokemonByIdOrName(pokemonProp as string);
       setPokemon(res);
+      if (isHome) {
+        pokemonList.push(res);
+      }
     };
     fetchPokemon();
   }, [pokemonProp]);

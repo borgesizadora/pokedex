@@ -10,7 +10,7 @@ const PokeList: React.FC<IPokeList> = ({ pokemonList }) => {
   return (
     <S.Wrapper>
       {pokemonList.map((pokemon, i) => {
-        return <Card key={pokemon.name + i} pokemon={pokemon.name} />;
+        return <Card key={pokemon.name + i} pokemon={pokemon.name} isHome />;
       })}
     </S.Wrapper>
   );

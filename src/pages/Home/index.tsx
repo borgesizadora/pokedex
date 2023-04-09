@@ -2,13 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 
 import Loader from '~/components/Loader';
-import { Result } from '~/models/Pokemon';
+import { Pokemon, Result } from '~/models/Pokemon';
 import PokeList from '~/pages/Home/components/PokeList';
-import { getAllPokemon } from '~/services/Pokemon/pokemonRequests';
+import { getAllPokemon, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import './styles.css';
 
+import { usePokeList } from './pokeListContext';
 import * as S from './styles';
 
 import { PokemonType } from '~/models/PokemonType';
@@ -19,6 +20,7 @@ function Home() {
   const [offset, setOffset] = useState(0);
   const [filter, setFilter] = useState<PokemonType | null>(null);
   const [allPokemonList, setAllPokemonList] = useState<Result[]>([]);
+  const [filteredPokemonList, setFilteredPokemonList] = useState<Result[]>([]);
 
   const { isFetching, isFetchedAfterMount } = useQuery(
     ['pokemonList', offset],
@@ -74,6 +76,14 @@ function Home() {
     };
   }, []);
 
+  const { pokemonList } = usePokeList();
+
+  const handleFilter = () => {
+    const filteredList = pokemonList.filter((pokemon) => pokemon.types[0].type.name === 'fire');
+    const filteredResultList = filteredList.map((pokemon) => ({ name: pokemon.name, url: '' }));
+    setFilteredPokemonList(filteredResultList);
+  };
+
   return (
     <S.Container>
       <S.IntroCard>
@@ -83,8 +93,14 @@ function Home() {
         </p>
       </S.IntroCard>
       <S.Wrapper>
+        <button onClick={handleFilter}>filter</button>
+
         <DropdownMenuDemo />
-        {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
+        {filteredPokemonList.length ? (
+          <PokeList pokemonList={filteredPokemonList} />
+        ) : (
+          !!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />
+        )}
         <div ref={row} />
         {isFetching && <Loader />}
       </S.Wrapper>
