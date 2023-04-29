@@ -21,7 +21,7 @@ const PokedexId = () => {
     setIsLoading(true);
     const res = await getPokemonByIdOrName(Number(params.id));
     setPokemon(res);
-    setIsLoading(false);
+    if (res) setIsLoading(false);
   };
   useEffect(() => {
     fetchPokemon();
@@ -37,7 +37,7 @@ const PokedexId = () => {
         </p>
       </S.IntroCard>
       <S.Wrapper>
-        {isLoading ? <Loader /> : pokemon ? <PokedexLayout pokemon={pokemon} /> : <div />}
+        <PokedexLayout pokemon={pokemon} isLoading={isLoading} />
       </S.Wrapper>
       <S.Warning>
         <FontAwesomeIcon icon={faCircleInfo} size={'1x'} />
