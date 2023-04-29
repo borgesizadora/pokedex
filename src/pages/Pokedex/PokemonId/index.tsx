@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Loader from '~/components/Loader';
-import PokedexLayout from '~/pages/Pokedex/components/PokedexLayout';
 import { Pokemon as PokeType } from '~/models/Pokemon';
+import PokedexLayout from '~/pages/Pokedex/components/PokedexLayout';
 import { getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
 
 const PokemonId = () => {
@@ -23,7 +23,15 @@ const PokemonId = () => {
   }, [params.id]);
 
   return (
-    <div>{isLoading ? <Loader /> : pokemon ? <PokedexLayout pokemon={pokemon} /> : <div />}</div>
+    <div>
+      {isLoading ? (
+        <Loader />
+      ) : pokemon ? (
+        <PokedexLayout pokemon={pokemon} isLoading={isLoading} />
+      ) : (
+        <div />
+      )}
+    </div>
   );
 };
 
