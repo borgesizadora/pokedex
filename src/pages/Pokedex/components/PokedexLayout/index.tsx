@@ -6,7 +6,6 @@ import { useTheme } from 'styled-components';
 import BottomPart from '../BottomPart';
 import PokedexRight from '../PokedexRight';
 import * as S from './styles';
-import './styles.css';
 
 interface IPokedexLayout {
   pokemon: Pokemon | undefined;
