@@ -30,4 +30,30 @@ export default createGlobalStyle`
     font-family: inherit;
     color: inherit;
   }
+
+  ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #292c33;
+     border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #3a3f4b;
+     border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #4d5362;
+     border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #5f667a;
+     border-radius: 10px;
+  }
+  
 `;

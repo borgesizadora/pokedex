@@ -42,7 +42,12 @@ const PokemonId = () => {
   }, [params.id, fetchPokemon]);
 
   return (
-    <motion.main initial="initial" animate="animate" exit="exit" variants={pageNavigationVariants}>
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageNavigationVariants}
+      style={{ width: '100%', maxWidth: '100vw' }}>
       <S.Container>
         {isLoading && <PokemonSkeleton />}
 
