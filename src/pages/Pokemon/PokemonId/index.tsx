@@ -37,10 +37,8 @@ const PokemonId = () => {
   const { colors } = useTheme();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchPokemon();
-    window.onbeforeunload = function () {
-      window.scrollTo(0, 0);
-    };
   }, [params.id, fetchPokemon]);
 
   return (
