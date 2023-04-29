@@ -1521,6 +1521,48 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     row-gap: 1rem;
     overflow: hidden;
     padding: 55px 15px;
+
+    .pokedex-right {
+      @media (min-width: 840px) {
+        position: relative;
+        transform-origin: center left;
+        transform: rotateY(-180deg);
+        transition: 0.5s ease all;
+        z-index: 50;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+      }
+    }
+
+    .pokedex-right-backside {
+      opacity: 0;
+      @media (min-width: 840px) {
+        opacity: 1;
+        right: 0px;
+        bottom: 0px;
+        position: absolute;
+        border-radius: 20px 0 0 20px;
+        top: -15px;
+        left: 0;
+        width: 104%;
+        height: 101%;
+        overflow: hidden;
+        -webkit-transform: rotateY(180deg);
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+      }
+    }
+
+    &.open .pokedex-right {
+      @media (min-width: 840px) {
+        transform: rotateY(0);
+      }
+    }
+
+    @media (min-width: 840px) {
+      perspective: 1600px;
+    }
+
     @media (max-width: ${e.xs}) {
       scale: 90%;
     }
@@ -1734,7 +1776,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
   }
     }
   `}
-`;const _4=({pokemon:e,isLoading:t})=>{const{colors:n}=zr(),[r,i]=x.exports.useState(!1),o=()=>i(!1);return x.exports.useEffect(()=>{let s=null;return t||(s=setTimeout(()=>{i(!0)},300)),()=>{s&&clearTimeout(s)}},[t]),b(gn,{children:_(S4,{className:`pokedex ${r?"open":""}`,children:[_(C4,{className:"pokedex-left",children:[_(k4,{children:[b("div",{}),b(P4,{}),_(E4,{children:[b(Rc,{color:n.red}),b(Rc,{color:n.yellow}),b(Rc,{color:n.green})]})]}),b($4,{children:b("div",{})}),!!e&&_(gn,{children:[_(T4,{children:[b(A4,{children:_(O4,{children:[_("p",{children:["#",e.id]}),b("img",{src:e.sprites.front_default,alt:e.name}),b("p",{children:e.name})]})}),b(R4,{})]}),b(s4,{types:e.types,handleClosePokedex:o})]})]}),b(b4,{pokemon:e})]})})},M4=T.div`
+`,_4=({pokemon:e,isLoading:t})=>{const{colors:n}=zr(),[r,i]=x.exports.useState(!1),o=()=>i(!1);return x.exports.useEffect(()=>{let s=null;return t||(s=setTimeout(()=>{i(!0)},300)),()=>{s&&clearTimeout(s)}},[t]),b(gn,{children:_(S4,{className:`pokedex ${r?"open":""}`,children:[_(C4,{className:"pokedex-left",children:[_(k4,{children:[b("div",{}),b(P4,{}),_(E4,{children:[b(Rc,{color:n.red}),b(Rc,{color:n.yellow}),b(Rc,{color:n.green})]})]}),b($4,{children:b("div",{})}),!!e&&_(gn,{children:[_(T4,{children:[b(A4,{children:_(O4,{children:[_("p",{children:["#",e.id]}),b("img",{src:e.sprites.front_default,alt:e.name}),b("p",{children:e.name})]})}),b(R4,{})]}),b(s4,{types:e.types,handleClosePokedex:o})]})]}),b(b4,{pokemon:e})]})})},M4=T.div`
   width: 100%;
   display: flex;
   flex-direction: column;
