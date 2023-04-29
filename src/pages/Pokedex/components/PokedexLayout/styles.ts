@@ -11,6 +11,48 @@ export const Wrapper = styled.div`
     row-gap: 1rem;
     overflow: hidden;
     padding: 55px 15px;
+
+    .pokedex-right {
+      @media (min-width: 840px) {
+        position: relative;
+        transform-origin: center left;
+        transform: rotateY(-180deg);
+        transition: 0.5s ease all;
+        z-index: 50;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+      }
+    }
+
+    .pokedex-right-backside {
+      opacity: 0;
+      @media (min-width: 840px) {
+        opacity: 1;
+        right: 0px;
+        bottom: 0px;
+        position: absolute;
+        border-radius: 20px 0 0 20px;
+        top: -15px;
+        left: 0;
+        width: 104%;
+        height: 101%;
+        overflow: hidden;
+        -webkit-transform: rotateY(180deg);
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+      }
+    }
+
+    &.open .pokedex-right {
+      @media (min-width: 840px) {
+        transform: rotateY(0);
+      }
+    }
+
+    @media (min-width: 840px) {
+      perspective: 1600px;
+    }
+
     @media (max-width: ${breakpoints.xs}) {
       scale: 90%;
     }
