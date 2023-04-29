@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
     justify-content: center;
     row-gap: 1rem;
     overflow: hidden;
+    padding: 55px 15px;
     @media (max-width: ${breakpoints.xs}) {
       scale: 90%;
     }

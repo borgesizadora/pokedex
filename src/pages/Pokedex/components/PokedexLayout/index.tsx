@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Pokemon } from '~/models/Pokemon';
 import { useTheme } from 'styled-components';
@@ -16,9 +16,18 @@ const PokedexLayout: React.FC<IPokedexLayout> = ({ pokemon }) => {
   const { colors } = useTheme();
   const [isPokedexOpen, setIspokedexOpen] = useState(false);
 
+  const handleClosePokedex = () => setIspokedexOpen(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIspokedexOpen(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      <button onClick={() => setIspokedexOpen((prev) => !prev)}>toggle</button>
       <S.Wrapper className={`pokedex ${isPokedexOpen ? 'open' : ''}`}>
         <S.PokedexLeft className="pokedex-left">
           <S.Header>
@@ -43,7 +52,7 @@ const PokedexLayout: React.FC<IPokedexLayout> = ({ pokemon }) => {
             </S.Screen>
             <S.ScreenShadow />
           </S.ScreenWrapper>
-          <BottomPart types={pokemon.types} />
+          <BottomPart types={pokemon.types} handleClosePokedex={handleClosePokedex} />
         </S.PokedexLeft>
         <PokedexRight pokemon={pokemon} />
       </S.Wrapper>

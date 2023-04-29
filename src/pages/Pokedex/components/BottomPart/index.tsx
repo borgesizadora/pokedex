@@ -7,8 +7,9 @@ import * as S from './styles';
 
 interface IBottomPart {
   types: PokeType[];
+  handleClosePokedex: () => void;
 }
-const BottomPart: React.FC<IBottomPart> = ({ types }) => {
+const BottomPart: React.FC<IBottomPart> = ({ types, handleClosePokedex }) => {
   const { colors } = useTheme();
   return (
     <S.Wrapper>
@@ -19,7 +20,7 @@ const BottomPart: React.FC<IBottomPart> = ({ types }) => {
           <S.CenterBtn color={colors.mediumBlue} />
         </S.CenterBtnsWrapper>
 
-        <CrossButton />
+        <CrossButton handleClosePokedex={handleClosePokedex} />
       </S.TopBtnsWrapper>
       <S.TypeWrapper>
         {types.map((type) => (
