@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  & button {
+    all: unset;
+    cursor: pointer;
+  }
 `;
 export const ButtonContainer = styled.div`
   position: relative;
