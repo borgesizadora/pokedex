@@ -7,8 +7,8 @@ import * as S from './styled';
 const PageLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
-      <Header />
       <S.MainContent>
+        <Header />
         <Container>{children}</Container>
       </S.MainContent>
     </>

@@ -4,11 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import PageLayout from './components/PageLayout';
-import { Battle } from './pages/Battle';
-import Home from './pages/Home';
-import PokedexId from './pages/Pokedex/PokedexId';
-import PokemonId from './pages/Pokemon/PokemonId';
+import AnimatedRoutes from './components/AnimatedRoutes';
 import GlobalStyle from './shared/styles/global';
 import theme from './shared/styles/theme';
 const baseName = import.meta.env.VITE_BASE_NAME;
@@ -19,17 +15,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter basename={baseName}>
-          <PageLayout>
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="pokedex/:id" element={<PokedexId />} />
-                <Route path="pokemon/:id" element={<PokemonId />} />
-                <Route path="battle" element={<Battle />} />
-                <Route path="*" element={<div>Not found</div>} />
-              </Route>
-            </Routes>
-          </PageLayout>
+          <Routes>
+            <Route path="/*" element={<AnimatedRoutes />} />
+          </Routes>
         </BrowserRouter>
         <GlobalStyle />
       </QueryClientProvider>

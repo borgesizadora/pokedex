@@ -4,6 +4,8 @@ import { BattlePkmBack } from '~/components/BattlePkmBack';
 import { BattlePkmFront } from '~/components/BattlePkmFront';
 import { Pokemon } from '~/models/Pokemon';
 import { getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
+import { pageNavigationVariants } from '~/shared/animations/pageNavigation';
+import { motion } from 'framer-motion';
 
 import * as S from './styles';
 
@@ -21,14 +23,16 @@ export const Battle = () => {
     fetchPokemon(['3', '59']);
   }, []);
   return (
-    <S.Container>
-      <S.Wrapper>
-        <S.ComingSoon>Coming soon</S.ComingSoon>
-        <S.Content>
-          {pokemon1 && <BattlePkmFront pokemon={pokemon1} />}
-          {pokemon2 && <BattlePkmBack pokemon={pokemon2} />}
-        </S.Content>
-      </S.Wrapper>
-    </S.Container>
+    <motion.main initial="initial" animate="animate" exit="exit" variants={pageNavigationVariants}>
+      <S.Container>
+        <S.Wrapper>
+          <S.ComingSoon>Coming soon</S.ComingSoon>
+          <S.Content>
+            {pokemon1 && <BattlePkmFront pokemon={pokemon1} />}
+            {pokemon2 && <BattlePkmBack pokemon={pokemon2} />}
+          </S.Content>
+        </S.Wrapper>
+      </S.Container>
+    </motion.main>
   );
 };
