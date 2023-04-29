@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom';
 import TypeCard from '~/components/TypeCard';
 import { Pokemon as IPokemon, PokemonSpecies } from '~/models/Pokemon';
 import { getPokemonSpecies, getPokemonByIdOrName } from '~/services/Pokemon/pokemonRequests';
+import { pageNavigationVariants } from '~/shared/animations/pageNavigation';
+import { motion } from 'framer-motion';
 import { useTheme } from 'styled-components';
 
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
@@ -40,65 +42,72 @@ const PokemonId = () => {
   }, [params.id, fetchPokemon]);
 
   return (
-    <S.Container>
-      {isLoading && <PokemonSkeleton />}
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageNavigationVariants}
+      style={{ width: '100%', maxWidth: '100vw' }}>
+      <S.Container>
+        {isLoading && <PokemonSkeleton />}
 
-      {!isLoading && params.id && pokemon ? (
-        <S.Wrapper>
-          <S.Header type={pokemon.types[0].type.name}>
-            <Link to={`/pokemon/${Number(pokemon?.id) > 1 ? Number(pokemon?.id) - 1 : 1}`}>
-              <S.HeaderButton>
-                <FontAwesomeIcon icon={faAngleLeft} />
-                <p>PREV POKEMON</p>
-              </S.HeaderButton>
-              <S.HeaderButtonMobile>
-                <FontAwesomeIcon icon={faAngleLeft} size="2x" color={colors.white} />
-              </S.HeaderButtonMobile>
-            </Link>
-            <S.MainImage type={pokemon.types[0].type.name}>
-              <img
-                src={
-                  pokemon.sprites.other['official-artwork'].front_default ||
-                  pokemon.sprites.front_default
-                }
-                alt={pokemon.name}
-              />
-            </S.MainImage>
+        {!isLoading && params.id && pokemon ? (
+          <S.Wrapper>
+            <S.Header type={pokemon.types[0].type.name}>
+              <Link to={`/pokemon/${Number(pokemon?.id) > 1 ? Number(pokemon?.id) - 1 : 1}`}>
+                <S.HeaderButton>
+                  <FontAwesomeIcon icon={faAngleLeft} />
+                  <p>PREV POKEMON</p>
+                </S.HeaderButton>
+                <S.HeaderButtonMobile>
+                  <FontAwesomeIcon icon={faAngleLeft} size="2x" color={colors.white} />
+                </S.HeaderButtonMobile>
+              </Link>
+              <S.MainImage type={pokemon.types[0].type.name}>
+                <img
+                  src={
+                    pokemon.sprites.other['official-artwork'].front_default ||
+                    pokemon.sprites.front_default
+                  }
+                  alt={pokemon.name}
+                />
+              </S.MainImage>
 
-            <Link to={`/pokemon/${Number(pokemon.id) + 1}`}>
-              <S.HeaderButton>
-                <p>NEXT POKEMON</p>
-                <FontAwesomeIcon icon={faAngleRight} />
-              </S.HeaderButton>
-              <S.HeaderButtonMobile isRight>
-                <FontAwesomeIcon icon={faAngleRight} size="2x" color={colors.white} />
-              </S.HeaderButtonMobile>
-            </Link>
-          </S.Header>
-          <S.Name>
-            #{pokemonSpecies?.id} {pokemonSpecies?.name.toUpperCase()}
-          </S.Name>
-          <S.Content>
-            <S.DescriptionStats>
-              <S.DescriptionContainer>
-                <S.Description>
-                  {pokemonSpecies?.flavor_text_entries
-                    .find((entry) => entry.language.name === 'en')
-                    ?.flavor_text.replace(/\f/g, ' ')}
-                </S.Description>
-                <div>
-                  {pokemon.types.map((type) => (
-                    <TypeCard key={type.type.name} typeName={type.type.name} />
-                  ))}
-                </div>
-              </S.DescriptionContainer>
-              <StatsChart stats={pokemon.stats} />
-            </S.DescriptionStats>
-            {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
-          </S.Content>
-        </S.Wrapper>
-      ) : null}
-    </S.Container>
+              <Link to={`/pokemon/${Number(pokemon.id) + 1}`}>
+                <S.HeaderButton>
+                  <p>NEXT POKEMON</p>
+                  <FontAwesomeIcon icon={faAngleRight} />
+                </S.HeaderButton>
+                <S.HeaderButtonMobile isRight>
+                  <FontAwesomeIcon icon={faAngleRight} size="2x" color={colors.white} />
+                </S.HeaderButtonMobile>
+              </Link>
+            </S.Header>
+            <S.Name>
+              #{pokemonSpecies?.id} {pokemonSpecies?.name.toUpperCase()}
+            </S.Name>
+            <S.Content>
+              <S.DescriptionStats>
+                <S.DescriptionContainer>
+                  <S.Description>
+                    {pokemonSpecies?.flavor_text_entries
+                      .find((entry) => entry.language.name === 'en')
+                      ?.flavor_text.replace(/\f/g, ' ')}
+                  </S.Description>
+                  <div>
+                    {pokemon.types.map((type) => (
+                      <TypeCard key={type.type.name} typeName={type.type.name} />
+                    ))}
+                  </div>
+                </S.DescriptionContainer>
+                <StatsChart stats={pokemon.stats} />
+              </S.DescriptionStats>
+              {pokemonSpecies ? <Evolution url={pokemonSpecies?.evolution_chain.url} /> : null}
+            </S.Content>
+          </S.Wrapper>
+        ) : null}
+      </S.Container>
+    </motion.main>
   );
 };
 

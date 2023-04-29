@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   margin: 4rem 0;
-  border-radius: 99px;
+  border-radius: 32px;
   position: relative;
   background-color: white;
   max-width: 70rem;

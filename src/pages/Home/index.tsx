@@ -5,6 +5,8 @@ import Loader from '~/components/Loader';
 import { Result } from '~/models/Pokemon';
 import PokeList from '~/pages/Home/components/PokeList';
 import { getAllPokemon } from '~/services/Pokemon/pokemonRequests';
+import { pageNavigationVariants } from '~/shared/animations/pageNavigation';
+import { motion } from 'framer-motion';
 
 import * as S from './styles';
 
@@ -69,19 +71,21 @@ function Home() {
   }, []);
 
   return (
-    <S.Container>
-      <S.IntroCard>
-        <p>
-          Here&#39;s a list of Pokemon from every generation. Click on any of them to get
-          information about their type, stats, and evolution chain!
-        </p>
-      </S.IntroCard>
-      <S.Wrapper>
-        {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
-        <div ref={row} />
-        {isFetching && <Loader />}
-      </S.Wrapper>
-    </S.Container>
+    <motion.main initial="initial" animate="animate" exit="exit" variants={pageNavigationVariants}>
+      <S.Container>
+        <S.IntroCard>
+          <p>
+            Here&#39;s a list of Pokemon from every generation. Click on any of them to get
+            information about their type, stats, and evolution chain!
+          </p>
+        </S.IntroCard>
+        <S.Wrapper>
+          {!!allPokemonList?.length && <PokeList pokemonList={allPokemonList} />}
+          <div ref={row} />
+          {isFetching && <Loader />}
+        </S.Wrapper>
+      </S.Container>
+    </motion.main>
   );
 }
 

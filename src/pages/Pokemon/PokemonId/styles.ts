@@ -11,9 +11,9 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - ${spacing.headerSpacing} - 76px);
-    margin: 38px 10px;
+    margin: 8rem 0;
     border-radius: 8px;
-    overflow: hidden;
+    position: relative;
   `}
 `;
 
@@ -30,6 +30,7 @@ export const Wrapper = styled.div`
     overflow: hidden;
     gap: 2rem;
     color: ${colors.darkGray};
+    max-width: 100vw;
     padding-bottom: 3rem;
   `}
 `;
@@ -45,6 +46,7 @@ export const Content = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 4rem;
+    max-width: 100vw;
   `}
 `;
 export const DescriptionStats = styled.div`

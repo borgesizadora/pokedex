@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
     justify-content: center;
     row-gap: 1rem;
     overflow: hidden;
+    padding: 55px 15px;
     @media (max-width: ${breakpoints.xs}) {
       scale: 90%;
     }
@@ -25,7 +26,7 @@ export const PokedexLeft = styled.div`
     border-bottom: 10px solid ${colors.pokedexDark};
     position: relative;
     overflow: hidden;
-    &::before {
+    /* &::before {
       content: '';
       border: 1px solid ${colors.pokedexDarkest};
       height: 520px;
@@ -41,8 +42,8 @@ export const PokedexLeft = styled.div`
         ${colors.pokedexMedium} 35%,
         ${colors.pokedexDark} 100%
       );
-    }
-    &::after {
+    } */
+    /* &::after {
       content: '';
       background-color: ${colors.pokedexDarkest};
       position: absolute;
@@ -52,7 +53,7 @@ export const PokedexLeft = styled.div`
       width: 47px;
       border-radius: 50%;
       z-index: 3;
-    }
+    } */
   `}
 `;
 export const Header = styled.div`
