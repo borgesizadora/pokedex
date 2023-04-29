@@ -25,7 +25,7 @@ export const PokedexLeft = styled.div`
     border-bottom: 10px solid ${colors.pokedexDark};
     position: relative;
     overflow: hidden;
-    &::before {
+    /* &::before {
       content: '';
       border: 1px solid ${colors.pokedexDarkest};
       height: 520px;
@@ -41,8 +41,8 @@ export const PokedexLeft = styled.div`
         ${colors.pokedexMedium} 35%,
         ${colors.pokedexDark} 100%
       );
-    }
-    &::after {
+    } */
+    /* &::after {
       content: '';
       background-color: ${colors.pokedexDarkest};
       position: absolute;
@@ -52,7 +52,7 @@ export const PokedexLeft = styled.div`
       width: 47px;
       border-radius: 50%;
       z-index: 3;
-    }
+    } */
   `}
 `;
 export const Header = styled.div`

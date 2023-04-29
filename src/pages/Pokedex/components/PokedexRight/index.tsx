@@ -6,7 +6,7 @@ import * as S from './styles';
 
 const PokedexRight: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
   return (
-    <S.Wrapper>
+    <S.Wrapper className="pokedex-right">
       <Layout>
         <>
           <Screen pokemon={pokemon} />
@@ -20,6 +20,11 @@ const PokedexRight: React.FC<{ pokemon: Pokemon }> = ({ pokemon }) => {
         </>
       </Layout>
       <S.OuterLayout />
+      <div className="pokedex-right-backside">
+        <S.BackOuterLayout />
+        <S.BackLayoutTriangle />
+        <S.BackLayoutBottomDetail />
+      </div>
     </S.Wrapper>
   );
 };
