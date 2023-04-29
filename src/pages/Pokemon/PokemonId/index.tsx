@@ -117,7 +117,12 @@ export const PokemonSkeleton = () => {
   const { colors } = useTheme();
 
   return (
-    <S.Container>
+    <motion.main
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={pageNavigationVariants}
+      style={{ width: '100%', maxWidth: '100vw' }}>
       <S.Wrapper>
         <S.Header type="normal">
           <S.HeaderButton>
@@ -154,6 +159,6 @@ export const PokemonSkeleton = () => {
           <EvolutionSkeleton />
         </S.Content>
       </S.Wrapper>
-    </S.Container>
+    </motion.main>
   );
 };
